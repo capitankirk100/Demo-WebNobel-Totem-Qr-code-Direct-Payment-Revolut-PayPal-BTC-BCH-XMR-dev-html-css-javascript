@@ -1,0 +1,2749 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebNobel - Ultimo Aggiornamento 17/02/2025 0re 03:57 a.m.</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --button-bg: #f0f0f0;
+            --button-text: #333333;
+            --active-button-bg: #007bff;
+            --active-button-text: #ffffff;
+            --card-border: #dddddd;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .top-buttons, .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover, button.active {
+            background-color: var(--active-button-bg);
+            color: var(--active-button-text);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+        }
+
+        .overlay-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--bg-color);
+            padding: 20px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-color);
+        }
+
+        .search-container { 
+            text-align: center; 
+            margin-bottom: 20px; 
+        }
+
+        .search-container input { 
+            width: 100%;
+            max-width: 300px; 
+            padding: 8px; 
+            border-radius: 5px; 
+            border: 1px solid var(--card-border);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+        .card { 
+            border: 1px solid var(--card-border);
+            border-radius: 5px; 
+            overflow: hidden;
+            transition: transform 0.3s;
+            background-color: var(--bg-color);
+        }
+
+        .card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+        }
+
+        .card img { 
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+        }
+
+        .card h3 { 
+            padding: 10px; 
+            margin: 0; 
+            text-align: center;
+            color: var(--text-color);
+            font-size: 16px;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+ .category-count {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 2px 5px;
+    margin-left: 5px;
+    font-size: 10px;
+}
+
+       .counter {
+    background-color: #e0e0e0;  /* Sfondo leggermente più scuro */
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Aggiunta ombra leggera */
+    margin-bottom: 15px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.counter div {
+    margin: 3px 8px;
+    text-align: center;
+}
+
+.counter span {
+    background-color: #007bff;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 3px;
+}
+
+        .all-button {
+            background-color: #007bff;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        body.dark-theme {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --button-bg: #333333;
+            --button-text: #ffffff;
+            --active-button-bg: #00a86b;
+            --active-button-text: #ffffff;
+            --card-border: #444444;
+        }
+        .button-container {
+    gap: 15px;  /* Aumenta lo spazio tra i bottoni */
+    margin-bottom: 30px;  /* Aumenta lo spazio sotto il container */
+    
+}
+button {
+    /* ... altri stili ... */
+    margin: 5px;  /* Aggiungi un margine intorno ai bottoni */
+}
+.counter {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.counter span {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+body.dark-theme .counter {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-theme .counter span {
+    background-color: #00a86b;
+}
+.top-buttons {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.top-buttons button {
+    background-color: #ffffff;
+    color: #333333;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.top-buttons button:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+body.dark-theme .top-buttons {
+    background-color: #2a2a2a;
+}
+
+body.dark-theme .top-buttons button {
+    background-color: #3a3a3a;
+    color: #ffffff;
+}
+
+body.dark-theme .top-buttons button:hover {
+    background-color: #00a86b;
+}
+body.dark-theme .all-button.active {
+    background-color: #00a86b;
+    color: #ffffff;
+}
+.all-button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+}
+
+.all-button.active {
+    background-color: var(--active-button-bg);
+    color: var(--active-button-text);
+}
+
+body.dark-theme .all-button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+}
+
+body.dark-theme .all-button.active {
+    background-color: var(--active-button-bg);
+    color: var(--active-button-text);
+}
+.dashboard-container {
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.dashboard-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.dashboard-controls button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dashboard-controls button:hover {
+    background-color: #0056b3;
+}
+
+.dashboard-counter {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.dashboard-counter div {
+    text-align: center;
+}
+
+.dashboard-counter span {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.dashboard-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+body.dark-theme .dashboard-container {
+    background-color: #2a2a2a;
+}
+
+body.dark-theme .dashboard-counter {
+    background-color: #3a3a3a;
+    color: white;
+}
+
+body.dark-theme .dashboard-controls button {
+    background-color: #00a86b;
+}
+
+body.dark-theme .dashboard-controls button:hover {
+    background-color: #008c5a;
+}
+.category-button {
+    padding: 5px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.category-button:hover, 
+.category-button.active {
+    background-color: var(--active-button-bg);
+    color: var(--active-button-text);
+}
+
+body.dark-theme .category-button {
+    background-color: #3a3a3a;
+    color: #fff;
+}
+
+body.dark-theme .category-button:hover, body.dark-theme .category-button.active {
+    background-color: #00a86b;
+}
+body.dark-theme .category-count {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.quote-container {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.quote {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.quote.visible {
+    opacity: 1;
+}
+
+.dashboard-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    text-align: left;
+}
+
+.dashboard-title.visible {
+    opacity: 1;
+}
+.like-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.like-button.active {
+    color: red;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.heart-container {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.heart-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    margin: 0;
+    cursor: pointer;
+    font-size: 18px;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.heart-button.active {
+    color: red;
+}
+
+.card h3 {
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 16px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+#likeToggle.active {
+    color: red;
+}
+
+
+/* AGGIUNGI QUESTO CSS NELLA SEZIONE PRINCIPALE DEGLI STILI */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.list-item {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.list-item-content {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    gap: 12px;
+    min-height: 72px;
+}
+
+.list-item-content img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.list-item-info {
+        flex: 1;
+        min-width: 0;
+    }
+.list-item-info h3 {
+        white-space: normal;
+        overflow: visible;
+    }
+.list-item-info p {
+    font-size: 12px;
+    color: #666;
+    margin: 4px 0 0;
+}
+
+.heart-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.open-button {
+    background-color: #007bff;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 45px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Media query per mobile */
+@media (max-width: 768px) {
+    .list-item-content {
+        padding: 10px;
+        width: auto;
+    }
+    
+    .dashboard-categories {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        max-height: none;
+        padding-bottom: 15px;
+    }
+    
+    .list-item-content img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .list-item-info h3 {
+        font-size: 13px;
+    }
+    
+    .list-item-info p {
+        font-size: 11px;
+    }
+    
+    .heart-button {
+        padding: 6px;
+    }
+    
+    .open-button {
+        padding: 4px 10px;
+        min-width: 45px;
+        margin-left: 4px;
+    }
+}
+
+body.dark-theme .list-item {
+    background-color: #2a2a2a;
+}
+
+body.dark-theme .list-item-info p {
+    color: #aaa;
+}
+
+body.dark-theme .list-item .open-button {
+    background-color: #00a86b;
+}
+.settings-panel {
+    background-color: #f2f2f7;
+    border-radius: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #d1d1d6;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.column-slider {
+    width: 100%;
+    margin-top: 10px;
+}
+
+body.dark-theme .settings-panel {
+    background-color: #1c1c1e;
+    color: white;
+}
+
+body.dark-theme .setting-item {
+    border-bottom-color: #38383a;
+}
+body.cyberpunk-theme {
+    --bg-color: #0a0a0a;
+    --text-color: #00ff00;
+    --button-bg: #ff00ff;
+    --button-text: #000000;
+    --active-button-bg: #00ffff;
+    --active-button-text: #000000;
+    --card-border: #ff00ff;
+}
+
+body.cyberpunk-theme .card,
+body.cyberpunk-theme .list-item {
+    border: 2px solid var(--card-border);
+    box-shadow: 0 0 10px var(--card-border);
+}
+
+body.cyberpunk-theme button {
+    border: 2px solid var(--button-text);
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+body.cyberpunk-theme .dashboard-title {
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 10px var(--text-color);
+}
+
+body.cyberpunk-theme .quote {
+    font-style: italic;
+    border-left: 4px solid var(--text-color);
+    padding-left: 10px;
+}
+body.hacker-theme {
+    --bg-color: #000000;
+    --text-color: #00ff00;
+    --button-bg: #003300;
+    --button-text: #00ff00;
+    --active-button-bg: #006600;
+    --active-button-text: #ffffff;
+    --card-border: #00ff00;
+    font-family: 'Courier New', monospace;
+}
+
+body.hacker-theme .card,
+body.hacker-theme .list-item {
+    border: 1px solid var(--card-border);
+    box-shadow: 0 0 5px var(--card-border);
+    background-color: #001100;
+}
+
+body.hacker-theme button {
+    border: 1px solid var(--button-text);
+    text-transform: lowercase;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+body.hacker-theme .dashboard-title {
+    font-family: 'VT323', monospace;
+    text-shadow: 0 0 5px var(--text-color);
+}
+
+body.hacker-theme .quote {
+    border-left: 2px solid var(--text-color);
+    padding-left: 10px;
+    font-style: italic;
+}
+
+body.hacker-theme input[type="text"],
+body.hacker-theme input[type="range"] {
+    background-color: #001100;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+}
+
+body.hacker-theme ::-webkit-scrollbar {
+    width: 10px;
+    background-color: #000000;
+}
+
+body.hacker-theme ::-webkit-scrollbar-thumb {
+    background-color: #00ff00;
+}
+body.hacker-theme .counter {
+    font-size: 10px;  /* Riduzione dimensione font */
+    padding: 8px;  /* Riduzione padding */
+}
+
+body.hacker-theme .counter div {
+    margin: 2px 6px;  /* Riduzione margini */
+}
+#webnobelLogo {
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+body.dark-theme #webnobelLogo,
+body.cyberpunk-theme #webnobelLogo,
+body.hacker-theme #webnobelLogo {
+    color: #ffffff;
+}
+body.vintage-theme {
+    --bg-color: #f3e5d8;
+    --text-color: #4a3728;
+    --button-bg: #d2b48c;
+    --button-text: #4a3728;
+    --active-button-bg: #8b4513;
+    --active-button-text: #f3e5d8;
+    --card-border: #8b4513;
+    font-family: 'Georgia', serif;
+}
+
+body.vintage-theme .card,
+body.vintage-theme .list-item {
+    border: 1px solid var(--card-border);
+    background-color: #ece0d1;
+}
+
+body.vintage-theme button {
+    border: 1px solid var(--button-text);
+    font-family: 'Georgia', serif;
+}
+
+body.vintage-theme .dashboard-title {
+    font-family: 'Playfair Display', serif;
+    color: #8b4513;
+}
+
+body.vintage-theme .quote {
+    font-style: italic;
+    color: #8b4513;
+}
+body.instagram-theme {
+    --bg-color: #fafafa;
+    --text-color: #262626;
+    --button-bg: #0095f6;
+    --button-text: #ffffff;
+    --active-button-bg: #00376b;
+    --active-button-text: #ffffff;
+    --card-border: #dbdbdb;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body.instagram-theme .card,
+body.instagram-theme .list-item {
+    border: 1px solid var(--card-border);
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+body.instagram-theme button {
+    border: none;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+body.instagram-theme .dashboard-title {
+    font-weight: 600;
+    color: #262626;
+}
+
+body.instagram-theme .quote {
+    font-style: normal;
+    color: #8e8e8e;
+}
+
+    .dashboard-title {
+        font-size: 24px;
+    }
+}
+
+.dashboard-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.control-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.control-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-theme .control-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ai-chat-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.ai-chat-title h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.ai-chat-title p {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.image-slider {
+  width: 100%;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.slider-container {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+}
+
+.slider-container img {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.password-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.features-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: var(--active-button-bg);
+  color: var(--active-button-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.features-button:hover {
+  opacity: 0.9;
+}
+
+.ai-chat-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  z-index: 2000;
+  overflow: hidden;
+}
+
+.ai-chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.ai-chat-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ai-chat-header h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ai-chat-header p {
+  font-size: 16px;
+  opacity: 0.8;
+  text-align: center;
+}
+
+.close-ai-chat {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.image-slider {
+  width: 100%;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.slider-container {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+}
+
+.slider-container img {
+  width: 300px;
+  height: 400px; /* Aumentata l'altezza delle immagini */
+  object-fit: cover; /* Assicura che l'immagine copra l'area senza distorsioni */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.password-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.features-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: var(--active-button-bg);
+  color: var(--active-button-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.features-button:hover {
+  opacity: 0.9;
+}
+
+/* Stili per i temi speciali */
+body.cyberpunk-theme .control-button,
+body.hacker-theme .control-button,
+body.vintage-theme .control-button,
+body.instagram-theme .control-button {
+  color: var(--text-color);
+}
+
+Certamente! Ecco il codice aggiornato per implementare le nuove funzionalità richieste. Aggiungeremo i tre pulsanti nella pagina di inserimento della password.
+
+
+Sostituisci il codice dell'overlay della chat AI con questo:
+
+
+
+<div id="aiChatOverlay" class="ai-chat-overlay">
+  <div class="ai-chat-container">
+    <div class="ai-chat-header">
+      <h1>AI WebNobel & AI Driver4You</h1>
+      <p>La prima Intelligenza Artificiale della Vallecamonica</p>
+      <button id="closeAiChat" class="close-ai-chat">&times;</button>
+    </div>
+    
+    <!-- Slider delle immagini -->
+    <div class="image-slider" id="loginSlider">
+      <div class="slider-container">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-XkD24KGpTG2nYtcmo8BzuqpLmbxRSW.png" alt="WebNobel AI">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-D8uP41Rj8N2UOWr8XgSPBPUdy7H1K9.png" alt="Avatar Camuni">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-x4JhTdQS0DDn0sUpXbTDdupQYOVDKL.png" alt="DoctorNow">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-EAOLsq1JjiDSFFB8Jl66rv48Y4BfsK.png" alt="Driver4You">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-sudv3VOBTszTZe3R3YSdWccF1V2jdd.png" alt="FAQ">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ntxAYzYFnqjmMlPeYrBSUF6v4XNPre.png" alt="Bot">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1vuq4IpjmoVB7dfH6RRs4FDqZg0dPD.png" alt="Intrattenimento">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DnbpqSsZj9u0l62trS7dF1FBxBEFGC.png" alt="Investitori">
+      </div>
+    </div>
+
+    <!-- Password prompt -->
+    <div id="passwordPrompt" class="password-prompt">
+      <input type="password" id="chatPassword" placeholder="Inserisci la password">
+      <button id="submitPassword">Accedi</button>
+    </div>
+
+    <div id="aiChatMessages" class="ai-chat-messages">
+      <!-- Contenuto chat -->
+      <button id="featuresButton" class="features-button">Cosa puoi fare con la nostra AI?</button>
+      
+      <!-- Slider per le funzionalità (inizialmente nascosto) -->
+      <div class="image-slider" id="featuresSlider" style="display: none;">
+        <div class="slider-container">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-XkD24KGpTG2nYtcmo8BzuqpLmbxRSW.png" alt="WebNobel AI">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-D8uP41Rj8N2UOWr8XgSPBPUdy7H1K9.png" alt="Avatar Camuni">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-x4JhTdQS0DDn0sUpXbTDdupQYOVDKL.png" alt="DoctorNow">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-EAOLsq1JjiDSFFB8Jl66rv48Y4BfsK.png" alt="Driver4You">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-sudv3VOBTszTZe3R3YSdWccF1V2jdd.png" alt="FAQ">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ntxAYzYFnqjmMlPeYrBSUF6v4XNPre.png" alt="Bot">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1vuq4IpjmoVB7dfH6RRs4FDqZg0dPD.png" alt="Intrattenimento">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DnbpqSsZj9u0l62trS7dF1FBxBEFGC.png" alt="Investitori">
+        </div>
+      </div>
+      <iframe id="aiChatFrame" style="display: none; width: 100%; height: 500px; border: none;"></iframe>
+    </div>
+  </div>
+</div>
+```
+```
+
+CSS:
+Aggiungi questi stili al tuo blocco `<style>` esistente:
+
+```css
+.password-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.password-prompt input {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 200px;
+  border: 1px solid var(--card-border);
+  border-radius: 5px;
+}
+
+.password-prompt button {
+  padding: 10px 20px;
+  background-color: var(--active-button-bg);
+  color: var(--active-button-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.additional-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.option-button {
+  padding: 10px 20px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 200px;
+  transition: background-color 0.3s ease;
+}
+
+.option-button:hover {
+  background-color: var(--active-button-bg);
+  color: var(--active-button-text);
+}
+
+.scan-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.scan-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+}
+
+.scan-content h2 {
+  margin-bottom: 20px;
+}
+
+#qrCode {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 20px;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.payment-buttons button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#kioskModeButton.active {
+  background-color: #00a86b;
+  color: white;
+}
+```
+    </style>
+</head>
+    <body>
+      
+
+
+
+<div id="aiChatOverlay" class="ai-chat-overlay">
+  <div class="ai-chat-container">
+    <div class="ai-chat-header">
+      <h1>AI WebNobel & AI Driver4You</h1>
+      <p>La prima Intelligenza Artificiale della Vallecamonica</p>
+      <button id="closeAiChat" class="close-ai-chat">&times;</button>
+    </div>
+    
+    <!-- Slider delle immagini -->
+    <div class="image-slider" id="loginSlider">
+      <div class="slider-container">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-XkD24KGpTG2nYtcmo8BzuqpLmbxRSW.png" alt="WebNobel AI">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-D8uP41Rj8N2UOWr8XgSPBPUdy7H1K9.png" alt="Avatar Camuni">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-x4JhTdQS0DDn0sUpXbTDdupQYOVDKL.png" alt="DoctorNow">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-EAOLsq1JjiDSFFB8Jl66rv48Y4BfsK.png" alt="Driver4You">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-sudv3VOBTszTZe3R3YSdWccF1V2jdd.png" alt="FAQ">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ntxAYzYFnqjmMlPeYrBSUF6v4XNPre.png" alt="Bot">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1vuq4IpjmoVB7dfH6RRs4FDqZg0dPD.png" alt="Intrattenimento">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DnbpqSsZj9u0l62trS7dF1FBxBEFGC.png" alt="Investitori">
+      </div>
+    </div>
+
+    <!-- Password prompt -->
+    <div id="passwordPrompt" class="password-prompt">
+      <input type="password" id="chatPassword" placeholder="Inserisci la password">
+      <button id="submitPassword">Accedi</button>
+    </div>
+
+    <div id="aiChatMessages" class="ai-chat-messages">
+      <!-- Contenuto chat -->
+      <button id="featuresButton" class="features-button">Cosa puoi fare con la nostra AI?</button>
+      
+      <!-- Slider per le funzionalità (inizialmente nascosto) -->
+      <div class="image-slider" id="featuresSlider" style="display: none;">
+        <div class="slider-container">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-XkD24KGpTG2nYtcmo8BzuqpLmbxRSW.png" alt="WebNobel AI">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-D8uP41Rj8N2UOWr8XgSPBPUdy7H1K9.png" alt="Avatar Camuni">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-x4JhTdQS0DDn0sUpXbTDdupQYOVDKL.png" alt="DoctorNow">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-EAOLsq1JjiDSFFB8Jl66rv48Y4BfsK.png" alt="Driver4You">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-sudv3VOBTszTZe3R3YSdWccF1V2jdd.png" alt="FAQ">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ntxAYzYFnqjmMlPeYrBSUF6v4XNPre.png" alt="Bot">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1vuq4IpjmoVB7dfH6RRs4FDqZg0dPD.png" alt="Intrattenimento">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DnbpqSsZj9u0l62trS7dF1FBxBEFGC.png" alt="Investitori">
+        </div>
+      </div>
+      <iframe id="aiChatFrame" style="display: none; width: 100%; height: 500px; border: none;"></iframe>
+    </div>
+  </div>
+</div>
+```
+
+<div class="dashboard-controls">
+
+</div>
+  <div class="dashboard-header">
+    <div class="quote-container">
+        <div class="quote"></div>
+    </div>
+    <h1 class="dashboard-title">WebNobel</h1>
+    <div class="dashboard-controls">
+  <button id="aiChatButton" class="control-button">AI</button>
+  <button id="kioskModeButton" class="control-button">🧾</button>
+  <button id="settingsButton" onclick="openSettings()">⚙️</button>
+</div>
+</div>
+
+        <div class="dashboard-counter" id="homeCounter"></div>
+
+        <div class="dashboard-categories" id="mainCategories"></div>
+    </div>
+
+    <div class="search-container">
+        <input type="text" placeholder="Cerca" id="searchInput">
+    </div>
+
+    <div id="cardGrid" class="grid"></div>
+
+    <div id="filtersOverlay" class="overlay">
+    <div class="overlay-content">
+        <button class="close-button" onclick="closeFilters()">&times;</button>
+        <h2>Seleziona le categorie</h2>
+        <div class="counter" id="filterCounter"></div>
+        <button class="all-button" onclick="toggleAllCategories()">All</button>
+        <div id="filterButtons" class="button-container"></div>
+    </div>
+</div>
+<div id="settingsOverlay" class="overlay">
+    <div class="overlay-content settings-panel">
+        <h2>Impostazioni</h2>
+        <div class="setting-item">
+            <span>Tema</span>
+            <label class="switch">
+                <input type="checkbox" id="themeToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="setting-item">
+            <span>Tema CyberPunk</span>
+            <label class="switch">
+                <input type="checkbox" id="cyberpunkToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+          <div class="setting-item">
+            <span>Tema Hacker</span>
+            <label class="switch">
+                <input type="checkbox" id="hackerToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="setting-item">
+    <span>Tema Vintage</span>
+    <label class="switch">
+        <input type="checkbox" id="vintageToggle">
+        <span class="slider round"></span>
+    </label>
+</div>
+<div class="setting-item">
+    <span>Tema Instagram</span>
+    <label class="switch">
+        <input type="checkbox" id="instagramToggle">
+        <span class="slider round"></span>
+    </label>
+</div>
+        <div class="setting-item">
+            <span>Layout</span>
+            <label class="switch">
+                <input type="checkbox" id="layoutToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="setting-item">
+            <span>Mostra solo preferiti</span>
+            <label class="switch">
+                <input type="checkbox" id="likedToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="setting-item">
+            <span>Colonne: <span id="columnValue">2</span></span>
+            <input type="range" min="1" max="10" value="2" class="column-slider" id="columnSlider">
+        </div>
+        <button class="close-button" onclick="closeSettings()">&times;</button>
+    </div>
+</div>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<div id="webnobelLogo" style="position: fixed; top: 10px; left: 10px; font-size: 18px; font-weight: bold; z-index: 1000;">WebNobel</div>
+
+<div id="layoutOverlay" class="overlay">
+    <div class="overlay-content">
+        <button class="close-button" onclick="closeLayout()">&times;</button>
+        <h2>Seleziona il numero di colonne</h2>
+        <div class="button-container">
+            <button class="column-option" data-columns="1">1</button>
+            <button class="column-option" data-columns="2">2</button>
+            <button class="column-option" data-columns="3">3</button>
+            <button class="column-option" data-columns="4">4</button>
+            <button class="column-option" data-columns="5">5</button>
+            <button class="column-option" data-columns="6">6</button>
+            <button class="column-option" data-columns="7">7</button>
+            <button class="column-option" data-columns="8">8</button>
+            <button class="column-option" data-columns="9">9</button>
+            <button class="column-option" data-columns="10">10</button>
+        </div>
+    </div>
+</div>
+    <script>
+        let isDesktopLayout = false;
+
+function toggleLayout() {
+    isDesktopLayout = !isDesktopLayout;
+    const layoutToggle = document.getElementById('layoutToggle');
+    if (layoutToggle) {
+        layoutToggle.checked = true;
+    }
+    
+    updateDisplay();
+    updateCounters();
+    updateSettingsState();
+    
+    if (isDesktopLayout) {
+        layoutToggle.textContent = '💻';
+        document.querySelectorAll('.column-option').forEach(btn => {
+            btn.style.display = 'inline-block';
+        });
+    } else {
+        layoutToggle.textContent = '📱';
+        document.querySelectorAll('.column-option').forEach(btn => {
+            if (parseInt(btn.dataset.columns) > 6) {
+                btn.style.display = 'none';
+            } else {
+                btn.style.display = 'inline-block';
+            }
+        });
+    }
+    
+    openLayout();
+}
+let isListLayout = false;
+
+function switchLayout() {
+    isListLayout = !isListLayout;
+    const layoutSwitch = document.getElementById('layoutSwitch');
+    layoutSwitch.textContent = isListLayout ? '📊' : '🗂️';
+    updateDisplay();
+}
+
+function openLayout() {
+    document.getElementById('layoutOverlay').style.display = 'block';
+}
+
+function init() {
+    updateMainCategories();
+    updateFilterButtons();
+    isListLayout = true;  // Imposta il layout lista come default
+    currentColumns = 1;  // Imposta il valore delle colonne a 1
+    updateDisplay();
+    updateCounters();
+    updateSettingsState();
+
+    
+    // Aggiungi gli event listener per i temi
+    document.getElementById('cyberpunkToggle').addEventListener('change', toggleCyberpunkTheme);
+    document.getElementById('hackerToggle').addEventListener('change', toggleHackerTheme);
+    document.getElementById('vintageToggle').addEventListener('change', toggleVintageTheme);
+    document.getElementById('instagramToggle').addEventListener('change', toggleInstagramTheme);
+}
+let likedItems = JSON.parse(localStorage.getItem('likedItems')) || [];
+let showingLikedOnly = false;
+
+function toggleLike(event, itemName) {
+    event.preventDefault();
+    event.stopPropagation();
+    const index = likedItems.indexOf(itemName);
+    if (index > -1) {
+        likedItems.splice(index, 1);
+    } else {
+        likedItems.push(itemName);
+    }
+    localStorage.setItem('likedItems', JSON.stringify(likedItems));
+    updateDisplay();
+    updateCounters();
+}
+
+function toggleLikedItems() {
+    showingLikedOnly = !showingLikedOnly;
+    document.getElementById('likeToggle').classList.toggle('active', showingLikedOnly);
+    updateDisplay();
+    updateCounters();
+}
+
+function createCard(item) {
+    const card = document.createElement('div');
+    card.className = isListLayout ? 'list-item' : 'card';
+    const isLiked = likedItems.includes(item.Nome);
+    
+    if (isListLayout) {
+        card.innerHTML = `
+            <div class="list-item-content">
+                <img src="${item.URLFoto}" alt="${item.Nome}">
+                <div class="list-item-info">
+                    <h3>${item.Nome}</h3>
+                    <p>${item.Categoria}</p>
+                </div>
+                <button class="heart-button ${isLiked ? 'active' : ''}" onclick="toggleLike(event, '${item.Nome}')">
+                    ${isLiked ? '❤️' : '🤍'}
+                </button>
+                <a href="${item.URL}" target="_blank" class="open-button">APRI</a>
+            </div>
+        `;
+    } else {
+        card.innerHTML = `
+            <a href="${item.URL}" target="_blank">
+                <img src="${item.URLFoto}" alt="${item.Nome}">
+                <h3>${item.Nome}</h3>
+            </a>
+            <div class="heart-container">
+                <button class="heart-button ${isLiked ? 'active' : ''}" onclick="toggleLike(event, '${item.Nome}')">
+                    ${isLiked ? '❤️' : '🤍'}
+                </button>
+            </div>
+        `;
+    }
+    
+    return card;
+}
+function openSettings() {
+    document.getElementById('settingsOverlay').style.display = 'block';
+    updateSettingsState();
+}
+
+function closeSettings() {
+    document.getElementById('settingsOverlay').style.display = 'none';
+}
+
+function updateSettingsState() {
+    document.getElementById('themeToggle').checked = document.body.classList.contains('dark-theme');
+    document.getElementById('layoutToggle').checked = isListLayout;
+    document.getElementById('likedToggle').checked = showingLikedOnly;
+    document.getElementById('columnSlider').value = currentColumns;
+    document.getElementById('columnValue').textContent = currentColumns;
+}
+
+function toggleTheme() {
+    document.body.classList.toggle('dark-theme');
+    updateSettingsState();
+    updateDisplay();
+}
+
+function toggleLayout() {
+    isListLayout = !isListLayout;
+    updateSettingsState();
+    updateDisplay();
+}
+
+function toggleLikedItems() {
+    showingLikedOnly = !showingLikedOnly;
+    updateSettingsState();
+    updateDisplay();
+    updateCounters();
+}
+
+function changeColumns(value) {
+    currentColumns = value;
+    document.getElementById('columnValue').textContent = value;
+    if (currentColumns === 1) {
+        cardGrid.style.display = 'flex';
+        cardGrid.style.flexDirection = 'column';
+    } else {
+        cardGrid.style.display = 'grid';
+        cardGrid.style.gridTemplateColumns = `repeat(${currentColumns}, 1fr)`;
+    }
+    updateDisplay();
+}
+
+// Aggiungi questi event listener dopo la definizione delle funzioni
+document.getElementById('themeToggle').addEventListener('change', toggleTheme);
+document.getElementById('layoutToggle').addEventListener('change', toggleLayout);
+document.getElementById('likedToggle').addEventListener('change', toggleLikedItems);
+document.getElementById('columnSlider').addEventListener('input', (e) => changeColumns(e.target.value));
+
+
+// Chiamata alla funzione init all'avvio
+init();
+window.addEventListener('load', init);
+
+
+
+
+    </script>
+</body>
+
+    <script>
+        const jsonData = [
+               
+{ "Nome": "Aggiungi Pubblicità in Canale Telegram Specifico", "Categoria": "Crea", "URLFoto": "https://sasasared.carrd.co/assets/images/image142.jpg?v=29222105", "URL": "https://vta.mysellix.io/product/pubblicit-nobelium" },
+
+  { "Nome": "Diventa un Driver4You", "Categoria": "Crea", "URLFoto": "https://sasasared.carrd.co/assets/images/image140.jpg?v=29222105", "URL": "https://VTA.mysellix.io/group/658a29ece0454" },
+  
+  { "Nome": "🟠 Ai WebNobel e Ai Driver4You la prima Intelligenza Artificiale in Vallecamonica In Arrivo", "Categoria": "Promo", "URLFoto": "https://sasasared.carrd.co/assets/images/image228.jpg?v=6c3e8883", "URL": "#" },
+  { "Nome": "🟠 3,90€ / 1 Mese Aggiungimi in WebNobel", "Categoria": "Promo", "URLFoto": "https://sasasared.carrd.co/assets/images/image101.jpg?v=eb9f633f", "URL": "https://vta.mysellix.io/product/aggiungimi-in-webnobel-66ecb3ac7ba21" },
+  { "Nome": "🟠 3,90€ / 1 Mese Aggiungi Pubblicità in Canale Telegram Specifico", "Categoria": "Promo", "URLFoto": "https://sasasared.carrd.co/assets/images/image142.jpg?v=eb9f633f", "URL": "https://vta.mysellix.io/product/pubblicit-nobelium" },
+  { "Nome": "🟠 7,99€ / 1 Mese Crea Nuovo Negozio", "Categoria": "Promo", "URLFoto": "https://sasasared.carrd.co/assets/images/image141.jpg?v=eb9f633f", "URL": "https://VTA.mysellix.io/group/658a29ece0454" },
+  { "Nome": "🟠 0€ per i primi 6/25. Diventa un Driver4You Car Sharing", "Categoria": "Promo", "URLFoto": "https://sasasared.carrd.co/assets/images/image140.jpg?v=29222105", "URL": "https://VTA.mysellix.io/group/658a29ece0454" },
+  { "Nome": "🟠 3,90€ / 1 Mese Aggiungi il mio Ristorante", "Categoria": "Promo", "URLFoto": "https://sasasared.carrd.co/assets/images/image197.jpg?v=29222105", "URL": "https://vta.mysellix.io/product/aggiungimi-in-webnobel-66ecb3ac7ba21" },
+  { "Nome": "🟠 3,90€ / 1 Mese Aggiungi il mio Negozio/Prodotti di Gastronomia/cibo", "Categoria": "Promo", "URLFoto": "https://sasasared.carrd.co/assets/images/image101.jpg?v=eb9f633f", "URL": "https://vta.mysellix.io/product/aggiungimi-in-webnobel-66ecb3ac7ba21" },
+  { "Nome": "🟠 3,90€ / 1 Mese Aggiungi le mie Locations al WebNobel", "Categoria": "Promo", "URLFoto": "https://sasasared.carrd.co/assets/images/image101.jpg?v=eb9f633f", "URL": "https://vta.mysellix.io/product/aggiungimi-in-webnobel-66ecb3ac7ba21" },
+  { "Nome": "🟠 39,90€ / 1 Mese Acquista il FrameWork WebNobel e adattalo per un mio progetto o azienda", "Categoria": "Promo", "URLFoto": "https://sasasared.carrd.co/assets/images/image180.jpg?v=eb9f633f", "URL": "https://t.me/aboutnobelcontact_bot" },    
+  { "Nome": "🟠 Starting to 600€ / Ti inserisco nell'Ai WebNobel mi occupo dell'addestramento dei tuoi Dati con Logiche + Test", "Categoria": "Promo", "URLFoto": "https://sasasared.carrd.co/assets/images/image233.jpg?v=6c3e8883", "URL": "https://t.me/aboutnobelcontact_bot" },    
+  
+  
+  
+   
+{ "Nome": "FAQ Gestisci e guadagna", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image208.jpg?v=29222105", "URL": "https://t.me/nobeliumlab/166" },
+{ "Nome": "Angolo Terme", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image02.jpg?v=29222105", "URL": "https://t.me/+E9q0VSDN1UM0N2Jk" },
+{ "Nome": "Artogne", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image01.jpg?v=29222105", "URL": "https://t.me/+GMNYNcu86K84OGE0" },
+{ "Nome": "Berzo Demo", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image87.jpg?v=29222105", "URL": "https://t.me/+iJW84nTRnZc5OTE0" },
+{ "Nome": "B.Inferiore", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image86.jpg?v=29222105", "URL": "https://t.me/+M7nEWyPzQoNkNTg0" },
+{ "Nome": "Bienno", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image85.jpg?v=29222105", "URL": "https://t.me/+VVlD_i0XUyhkOTNk" },
+{ "Nome": "Borno", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image84.jpg?v=29222105", "URL": "https://t.me/+2u0ogEcPyCY5Y2E0" },
+{ "Nome": "Braone", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image83.jpg?v=29222105", "URL": "https://t.me/+aAp0MeUh9ktiM2Rk" },
+{ "Nome": "Breno", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image82.jpg?v=29222105", "URL": "https://t.me/+dL0CEdPYY7c5MmVk" },
+{ "Nome": "Capo di Ponte", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image81.jpg?v=29222105", "URL": "https://t.me/+cHf4NOyN2mM5MDc0" },
+{ "Nome": "Cedegolo", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image80.jpg?v=29222105", "URL": "https://t.me/+FI1r2wP-dUw3YjBk" },
+{ "Nome": "Cerveno", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image79.jpg?v=29222105", "URL": "https://t.me/+QtK9MsHtQidmYjBk" },
+{ "Nome": "Ceto", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image78.jpg?v=29222105", "URL": "https://t.me/+vPEiwvmk6JRhZjJk" },
+{ "Nome": "Cevo", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image77.jpg?v=29222105", "URL": "https://t.me/+poRCsSp5tEwwM2E0" },
+{ "Nome": "Cimbergo", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image76.jpg?v=29222105", "URL": "https://t.me/+65RPpcvfu1YwNTNk" },
+{ "Nome": "Cividate Camuno", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image75.jpg?v=29222105", "URL": "https://t.me/+lnocTTIFyFgzZmRk" },
+{ "Nome": "Corteno Golgi", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image74.jpg?v=29222105", "URL": "https://t.me/+Ib61ag-XvgkxYTA8" },
+{ "Nome": "Costa Volpino", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image73.jpg?v=29222105", "URL": "https://t.me/+M5YmSXmtQEoxNGRk" },
+{ "Nome": "Darfo", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image72.jpg?v=29222105", "URL": "https://t.me/+u3BIp1-dOGljYWJk" },
+{ "Nome": "Edolo", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image71.jpg?v=29222105", "URL": "https://t.me/+S6WgYDvH1OozZWI0" },
+{ "Nome": "Esine", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image70.jpg?v=29222105", "URL": "https://t.me/+2NvMS06_RWI0NmQ0" },
+{ "Nome": "Gianico", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image69.jpg?v=29222105", "URL": "https://t.me/+N49XJzqn0Z44OTg0" },
+{ "Nome": "Incudine", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image68.jpg?v=29222105", "URL": "https://t.me/+MgvY_diUH8M2NjRk" },
+{ "Nome": "Losine", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image67.jpg?v=29222105", "URL": "https://t.me/+JUKUTWcQQARlZjZk" },
+{ "Nome": "Lovere", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image66.jpg?v=29222105", "URL": "https://t.me/+UpG0kpHxxjRjNmE0" },
+{ "Nome": "Lozio", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image67.jpg?v=29222105", "URL": "https://t.me/+ZEGYqF1BT81jOWY0" },
+{ "Nome": "Malegno", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image64.jpg?v=29222105", "URL": "https://t.me/+T-89V7UPjYk2OWVk" },
+{ "Nome": "Monno", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image63.jpg?v=29222105", "URL": "https://t.me/+3ze7ZCQk0rUyZTk0" },
+{ "Nome": "Niardo", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image62.jpg?v=29222105", "URL": "https://t.me/+HwQbFTVVOpBiNGVk" },
+{ "Nome": "Ono San Pietro", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image61.jpg?v=29222105", "URL": "https://t.me/+0f6MfwFP_99lZDQ8" },
+{ "Nome": "Ossimo", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image60.jpg?v=29222105", "URL": "https://t.me/+lBL28WQbUStmNTA0" },
+{ "Nome": "Paisco Loveno", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image59.jpg?v=29222105", "URL": "https://t.me/+vCL8vox6k5EyZTFk" },
+{ "Nome": "Paspardo", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image58.jpg?v=29222105", "URL": "https://t.me/+bvKptVgjt25kMjZk" },
+{ "Nome": "Pian Camuno", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image57.jpg?v=29222105", "URL": "https://t.me/+B5G6SHrBGPk0ZDU0" },
+{ "Nome": "Piancogno", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image56.jpg?v=29222105", "URL": "https://t.me/+VYHCYWB2jNg0NjQ0" },
+{ "Nome": "Pisogne", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image55.jpg?v=29222105", "URL": "https://t.me/+brjWWUiq2_5hYTQ8" },
+{ "Nome": "Ponte di Legno", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image54.jpg?v=29222105", "URL": "https://t.me/+TwTiIe5qe2BiNGE0" },
+{ "Nome": "Saviore dell'Adamello", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image53.jpg?v=29222105", "URL": "https://t.me/+Ydvz906XGUQyZWM8" },
+{ "Nome": "Sellero", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image52.jpg?v=29222105", "URL": "https://t.me/+pvOopbnsq0lmNGE8" },
+{ "Nome": "Sonico", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image51.jpg?v=29222105", "URL": "https://t.me/+ZiRkKcmNw0liNjI0" },
+{ "Nome": "Temù", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image50.jpg?v=29222105", "URL": "https://t.me/+Io-KMhHuxGJmNTA0" },
+{ "Nome": "Vezza d'Oglio", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image49.jpg?v=29222105", "URL": "https://t.me/+BxEh2FbEOmg3YTFk" },
+{ "Nome": "Vione", "Categoria": "Diventa Admin di", "URLFoto": "https://sasasared.carrd.co/assets/images/image48.jpg?v=29222105", "URL": "https://t.me/+XKHUa-sABPcwYzZk" },
+  { "Nome": "Angolo Terme 🟢 Online 4 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Angolo%20Terme,%20BS&filters%5Bspecializations%5D%5B0%5D=62&page=1" },
+  { "Nome": "Artogne 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Artogne,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Berzo Demo 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Artogne,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Berzo Inferiore 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Berzo%20Inferiore,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Bienno 🟢 Online 1 dottore", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Bienno,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Borno 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Borno,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Braone 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Braone,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Breno 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Breno,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Capo di Ponte 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Capo%20di%20Ponte,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Cedegolo 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Cedegolo,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Cerveno 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Cerveno,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Ceto 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Ceto,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Cevo 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Cevo,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Cimbergo 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Cimbergo,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Cividate Camuno 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Cividate%20Camuno,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Corteno Golgi 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Corteno%20Golgi,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Costa Volpino 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Costa%20Volpino,%20BG&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Darfo Boario Terme 🟢 Online 5 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Darfo%20Boario%20Terme,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Edolo 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Edolo,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Esine 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Esine,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Gianico 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Gianico,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Incudine 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Incudine,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Losine 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Losine,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Lovere 🟢 Online 4 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Lovere,%20BG&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Lozio 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Lozio,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Malegno 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Malegno,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+   { "Nome": "Monno 🟢 Online 1 dottore", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Monno,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Niardo 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Niardo,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Ono San Pietro 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Ono%20San%20Pietro,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Ossimo 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Ono%20San%20Pietro,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Paisco Loveno 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Paisco%20Loveno,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Paspardo 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Paspardo,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Pian Camuno 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Pian%20Camuno,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Piancogno 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Piancogno,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Pisogne 🟢 Online 2 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Pisogne,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Ponte di Legno 🔴 Offline", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Ponte%20di%20Legno,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Saviore dell'Adamello 🟢 Online 4 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Saviore%20Dell%27adamello,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Sellero 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Sellero,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Sonico 🟢 Online 3 dottori", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Sonico,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Temu 🟢 Online 1 dottore", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Sonico,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Vezza D'Oglio 🟢 Online 1 dottore", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Vezza%20d%27Oglio,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+  { "Nome": "Vione 🟢 Online 1 dottore", "Categoria": "DoctorNow", "URLFoto": "https://sasasared.carrd.co/assets/images/image210.jpg?v=29222105", "URL": "https://www.miodottore.it/cerca?q=Medico%20Di%20Medicina%20Generale&loc=Vione,%20BS&filters%5Bspecializations%5D%5B%5D=62" },
+   { "Nome": "🚦Salva Patente", "Categoria": "Risparmio e altro", "URLFoto": "https://sasasared.carrd.co/assets/images/image41.jpg?v=29222105", "URL": "https://t.me/+wLMeRf2Q0AkwOWQ0" },
+  { "Nome": "⛽️Dove Conviene Fare Carburante", "Categoria": "Risparmio e altro", "URLFoto": "https://sasasared.carrd.co/assets/images/image46.jpg?v=29222105", "URL": "https://carburanti.mise.gov.it/ospzSearch/zona" },
+  { "Nome": "⚕️Farmacie", "Categoria": "Risparmio e altro", "URLFoto": "https://envs.sh/PjE.jpg", "URL": "https://bit.ly/3kmITrR" },
+  { "Nome": "🔋Colonnine", "Categoria": "Risparmio e altro", "URLFoto": "https://sasasared.carrd.co/assets/images/image45.jpg?v=29222105", "URL": "https://bit.ly/3MA2CAm" },
+  { "Nome": "📰 Notizie Dal Mondo", "Categoria": "Intrattenimento", "URLFoto": "https://sasasared.carrd.co/assets/images/image43.jpg?v=29222105", "URL": "https://t.me/geopoliticalcenterfb" },
+  { "Nome": "♪ TikTok Downloader Bot", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image42.jpg?v=29222105", "URL": "https://t.me/downloader_tiktok_bot" },
+  { "Nome": "📸 Instagram Downloader Bot", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image44.jpg?v=29222105", "URL": "https://t.me/Instasave_bot" },
+  { "Nome": "▶️ YouTube Downloader Bot", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image30.jpg?v=29222105", "URL": "https://t.me/Youtube_dwnldr_bot" },
+  { "Nome": "☁️ File to Bot", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image29.jpg?v=29222105", "URL": "https://t.me/filetobot" },
+  { "Nome": "🗣 Transcriber Bot", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image28.jpg?v=29222105", "URL": "https://t.me/transcriber_bot" },
+  { "Nome": "🔑 Password Manager Bot", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image27.jpg?v=29222105", "URL": "https://t.me/pswmanagerbot" },
+  { "Nome": "🔄 File Converter Bot", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image26.jpg?v=29222105", "URL": "https://t.me/newfileconverterbot" },
+  { "Nome": "®️ WatemMark Bot", "Categoria":"Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image25.jpg?v=29222105", "URL": "https://t.me/WMarkProBot" },
+  { "Nome": "☎️ Free Segreteria Bot", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image24.jpg?v=29222105", "URL": "https://t.me/FreeSegreteriaBot" },
+  { "Nome": "✈️ Traccia Prezzi Aerei Bot", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image23.jpg?v=29222105", "URL": "https://t.me/airtrack_bot" },
+  { "Nome": "🚆 Monitora Treni", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image21.jpg?v=29222105", "URL": "https://t.me/airtrack_bot" },
+  { "Nome": "🍅 Pomodoro Bot", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image22.jpg?v=29222105", "URL": "https://t.me/pomodoro_timer_bot" },
+  { "Nome": "Force Subscribe Posso obbligare i membri del gruppo a unirsi a un canale specifico prima di scrivere nel gruppo", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image193.jpg?v=29222105", "URL": "https://t.me/ForceSubscribeRobot" },
+  { "Nome": "Transcriber Bot trascrive messaggi vocali e immagini in testo", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image28.jpg?v=29222105", "URL": "https://t.me/transcriber_bot" },
+  { "Nome": "DeleteEvents Elimino i messaggi di evento (ovvero i messaggi di azione) sui supergruppi ", "Categoria": "Bot", "URLFoto": "https://envs.sh/jJX.jpg", "URL": "https://t.me/DeleteEventsBot" },
+  { "Nome": "YouTube To Media Converter ", "Categoria": "Bot", "URLFoto": "https://envs.sh/jJy.jpg", "URL": "https://t.me/Yt_to_mp4_bot" },
+  { "Nome": "Instant Saver - Repost For Instagram Scarica immagini, video e testi da instagram. Il bot ti consente di salvare foto,video e testi da instagram", "Categoria": "Bot", "URLFoto": "https://envs.sh/jJx.jpg", "URL": "https://t.me/instasavegrambot" },
+  { "Nome": "GameBot è un bot dimostrativo per la piattaforma di gioco Telegram. Posso procurarti alcuni divertenti giochi campione da provare.", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image192.jpg?v=29222105", "URL": "https://t.me/gamebot" },
+  { "Nome": "Rose Potente bot Telegram per aiutarti a gestire i tuoi gruppi ", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image191.jpg?v=29222105", "URL": "https://t.me/MissRose_bot" },
+  { "Nome": "Image to Text (OCR) bot Estrai testo dalle immagini usando questo bot", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image190.jpg?v=29222105", "URL": "https://t.me/the_ocr_bot" },
+  { "Nome": "WebPage to PDF Il bot può aiutarti a salvare l'articolo web come file pdf leggibile", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image189.jpg?v=29222105", "URL": "https://t.me/html_to_pdf_bot" },
+  
+  { "Nome": "tlgur Ottieni un link pubblico per una foto/video/file con Telegram", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image188.jpg?v=29222105", "URL": "https://t.me/tlgurbot" },
+  { "Nome": "Temp Mail Il bot dai creatori del leggendario e Top#1 servizio di posta elettronica temporanea", "Categoria": "Bot", "URLFoto": " https://sasasared.carrd.co/assets/images/image187.jpg?v=29222105", "URL": "https://t.me/TempMail_org_bot" },
+  { "Nome": "Ai Text To Image ", "Categoria": "Bot", "URLFoto": "https://envs.sh/jot.jpg", "URL": "https://t.me/AiImageBot" },
+  { "Nome": "Feed Reader - Elite monitora i feed RSS e invia messaggi quando sono disponibili nuovi post.", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image186.jpg?v=29222105", "URL": "https://t.me/Elite_TheFeedReaderBot" },
+  { "Nome": "Skeddy è uno strumento di promemoria semplice ma potente che può aiutarti a creare e gestire i tuoi promemoria ", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image185.jpg?v=29222105", "URL": "https://t.me/SkeddyBot" },
+  { "Nome": "Briscola", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image184.jpg?v=29222105", "URL": "https://t.me/BriscolaBot" },
+  { "Nome": "📚Z-Library, la più grande biblioteca di e-book al mondo con oltre 10 milioni di libri e 80 milioni di articoli. Il nostro obiettivo è rendere la conoscenza accessibile a tutti ", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image183.jpg?v=29222105", "URL": "https://t.me/LibraryMatibot" },
+  { "Nome": "PDF Bot Un bot che può fare molte cose relative ai file PDF", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image182.jpg?v=29222105", "URL": "https://t.me/pdfbot" },
+  { "Nome": "Rilascio di Nuovi Bot Straordinari nelle prossime ore / giorni ", "Categoria": "Bot", "URLFoto": "https://sasasared.carrd.co/assets/images/image178.jpg?v=29222105", "URL": "https://t.me/nobeliumlab/87" },              
+
+  { "Nome": "🗿 La storia in foto", "Categoria": "Intrattenimento", "URLFoto": "https://sasasared.carrd.co/assets/images/image19.jpg?v=29222105", "URL": "https://t.me/LaStoriaInFoto" },
+  { "Nome": "White Paper", "Categoria": "FAQ", "URLFoto": "https://sasasared.carrd.co/assets/images/image128.jpg?v=29222105", "URL": "https://t.me/mappanobelium/8" },
+  { "Nome": "Ultimi Aggiornamenti", "Categoria": "FAQ", "URLFoto": "https://sasasared.carrd.co/assets/images/image127.jpg?v=29222105", "URL": "https://t.me/potenziamenti" },
+  { "Nome": "Supporto", "Categoria": "FAQ", "URLFoto": "https://sasasared.carrd.co/assets/images/image124.jpg?v=29222105", "URL": "https://t.me/nobeliumemergenza_bot" },
+  { "Nome": "Avatar Camuni Canale Ufficiale", "Categoria": "Avatar Camuni", "URLFoto": "https://sasasared.carrd.co/assets/images/image123.jpg?v=29222105", "URL": "https://t.me/avatarcamuni" },
+  { "Nome": "⚜️ Anime AI Camuni Rete Neurale ⚜️", "Categoria": "Avatar Camuni", "URLFoto": "https://sasasared.carrd.co/assets/images/image130.jpg?v=29222105", "URL": "https://t.me/animecamuni" },
+  { "Nome": "⚜️ Avatar Camuni Store ⚜️", "Categoria": "Avatar Camuni", "URLFoto": "https://sasasared.carrd.co/assets/images/image121.jpg?v=29222105" ,"URL": "https://t.me/acshop_bot" },
+  { "Nome": "Controlla Ultimo Avatar", "Categoria": "Avatar Camuni", "URLFoto": "https://sasasared.carrd.co/assets/images/image123.jpg?v=29222105", "URL": "https://www.instagram.com/avatar_camuni?utm_source=qr&igsh=NDdnaTVhOGYyaXh2" },
+  { "Nome": "😍 Avatar Stickers Pack 1", "Categoria": "Avatar Camuni", "URLFoto": "https://sasasared.carrd.co/assets/images/image143.jpg?v=29222105", "URL": "https://t.me/addstickers/AvatarCamuni60StickersPack1" },
+  { "Nome": "😍 Avatar Stickers Pack 2", "Categoria": "Avatar Camuni", "URLFoto": "https://sasasared.carrd.co/assets/images/image176.jpg?v=29222105", "URL": "https://t.me/addstickers/AvatarCamuniSecondaEdizione" },
+  { "Nome": "092🟢 Abilitata a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/jki.jpg", "URL": "https://www.instagram.com/p/DBNEgahiIJY/?igsh=Y2N2bDdzZDV1YmZk" },
+  { "Nome": "091🟢 Abilitata a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/Wxg.jpg", "URL": "https://www.instagram.com/p/C923CKOtdkG/?igsh=b3hlbjc5M2Npdnk0" },
+  { "Nome": "090🟢 Abilitato a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/Wxf.jpg", "URL": "https://www.instagram.com/p/C9Uewy9NaaT/?igsh=MTI0bG9ua2Vqa3Vrcg==" },
+  { "Nome": "089🟢 Abilitato a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/WxN.jpg", "URL": "https://www.instagram.com/p/C7e8A9sNRXP/?igsh=YWo2Mm9hZnY3dTg5" },
+  { "Nome": "088🟢 Abilitato a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/Wxa.jpg", "URL": "https://www.instagram.com/p/C7RbId5tdjU/?igsh=MTI0aXUxMzB2cGkxZg==" },
+  { "Nome": "087🟢 Abilitato a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/WxO.jpg", "URL": "https://www.instagram.com/p/C3-8zvXLRUq/?igsh=OGdhNmpzc254NjRx" },
+  { "Nome": "086🟢 Abilitato a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/Wxm.jpg", "URL": "https://www.instagram.com/p/Ct1bHjJtdJh/?igsh=djRsdHVhbWtla3Np" },
+  { "Nome": "085🟢 Abilitato a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/I1S.jpg", "URL": "https://www.instagram.com/p/Ct1YaYHNidF/?igsh=MWtyeTRrZ2FkOW93dA==" },
+  { "Nome": "084🟢 Abilitata a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/I1W.jpg", "URL": "https://www.instagram.com/p/CsJkVEOtW__/?igsh=YzkwczZ5eWhsODlk" },
+  { "Nome": "083🟢 Abilitato a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/jkK.jpg", "URL": "h" },
+  { "Nome": "082🟢 Abilitata a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/jk1.jpg", "URL": "https://www.instagram.com/p/CsJkVEOtW__/?igsh=YzkwczZ5eWhsODlk" },
+  { "Nome": "081🟢 Abilitato a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/jk4.jpg", "URL": "https://www.instagram.com/p/CsJkVEOtW__/?igsh=YzkwczZ5eWhsODlk" },
+  { "Nome": "080🟢 Abilitata a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/jkU.jpg", "URL": "https://www.instagram.com/p/CsJkVEOtW__/?igsh=YzkwczZ5eWhsODlk" },
+  { "Nome": "079🟢 Abilitato a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/jkl.jpg", "URL": "https://www.instagram.com/p/CsJkVEOtW__/?igsh=YzkwczZ5eWhsODlk" },
+  { "Nome": "078🟢 Abilitata a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/jkk.jpg", "URL": "https://www.instagram.com/p/CsJkVEOtW__/?igsh=YzkwczZ5eWhsODlk" },
+  { "Nome": "077🟢 Abilitato a Driver4You + Viaggio nel gusto🍲", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/jk8.jpg", "URL": "https://www.instagram.com/p/CsJkVEOtW__/?igsh=YzkwczZ5eWhsODlk" },
+  { "Nome": "Rilascio di Avatar Camuni Abilitati nelle prossime ore ", "Categoria": "Avatar Camuni", "URLFoto": "https://envs.sh/_EG.jpg", "URL": "https://t.me/nobeliumlab/87" },              
+    
+
+
+
+
+  { "Nome": "Brè il formaggio", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image18.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTQ2MjY1" },
+  { "Nome": "Bagóss il formaggio", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image17.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTQ2MjY1" },
+  { "Nome": "Insalata di Mare", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image16.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU4MzIw" },
+  { "Nome": "Insalata Russa", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image15.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTQ2MjY4" },
+  { "Nome": "Casoncelli di carne", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image14.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU3ODY2" },
+  { "Nome": "Crespelle agli asparagi", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image13.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU3ODc0" },
+  { "Nome": "Crespelle ai funghi", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image13.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU3ODc1" },
+  { "Nome": "Crespelle al prosciutto", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image13.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU3ODcz" },
+  { "Nome": "Crespelle al salmone", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image13.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU3ODc2" },
+  { "Nome": "Gnocchi alla romana", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image09.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU5MTQ2" },
+  { "Nome": "Lasagne alla Bolognese", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image08.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTQ2MjY3" },
+  { "Nome": "Melanzane alla parmigiana", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image07.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU5MTQy" },
+  { "Nome": "Ravioli Dozzina alla carne", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image06.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU3ODY3" },
+  { "Nome": "Arancini di riso", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image05.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU5MTQ1" },
+  { "Nome": "Involtini di melanzane", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image04.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU5MTQ0" },
+  { "Nome": "Mezzo Pollo allo spiedo", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image03.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTQ2MjY5" },
+  { "Nome": "Patate al forno", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image99.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU3ODY0" },
+  { "Nome": "Pollo Intero", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image03.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTQ2Mjcw" },
+  { "Nome": "Pollo intero tagliato", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image03.jpg?v=29222105", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTQ2Mjcy" },
+  { "Nome": "Crostata albicocca", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image229.jpg?v=eb9f633f", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU3ODY5" },
+  { "Nome": "Torta di mele", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://sasasared.carrd.co/assets/images/image230.jpg?v=eb9f633f", "URL": "https://t.me/gastronomiasedani_bot?start=Z2V0X2l0ZW09MTU3ODcx" },
+  { "Nome": "🟠 Aggiungi il mio Negozio/Prodotti di Gastronomia/cibo", "Categoria": "Gastronomia a casa mia", "URLFoto": "https://envs.sh/Pkz.jpg", "URL": "https://vta.mysellix.io/product/aggiungimi-in-webnobel-66ecb3ac7ba21" },
+  
+  
+   { "Nome": "Edward mani di forbice", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image174.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjA2ODk1" },
+  { "Nome": "Anime: Nana", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image173.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MTk4Njc5" },
+  { "Nome": "Illustrazione Pulp fiction 🎥 Mia wallace 🚬", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image172.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MTk4MTE4" },
+  { "Nome": "Manga: Junji Ito- tomie", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image171.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjAxNzgy" },
+  { "Nome": "💙HOWL il castello errante ✨🌈", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image170.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjA2ODk0" },
+  { "Nome": "Kitsune bondage🦊", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image169.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MTk4Njc4" },
+  { "Nome": "Restrizione della Bunny Inferno pt 1", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image168.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjAwNDE5" },
+  { "Nome": "Sensazioni: fiorire 🌷", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image167.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjAwNDIw" },
+  { "Nome": "Swirl Art / doppia faccia 🌓🌗", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image166.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjAwNDE3" },
+  { "Nome": "Swirl art / Gagball queen ✨", "Categoria": "Murphy", "URLFoto": "https://envs.sh/0oL.jpg", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjAwNDE2" },
+  { "Nome": "Paddle in resina: personalizzabili!", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image165.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MTk4MTIw" },
+  { "Nome": "👹 The Devil 👹", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image164.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjAwNDI1" },
+  { "Nome": "💓The lovers💓", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image163.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MTk4Njc3" },
+  { "Nome": "Coleottero 🪲", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image161.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjA2ODg1" },
+  { "Nome": "FALENA 🧚", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image160.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjA2ODgw" },
+  { "Nome": "Falena 🧚‍♀️", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image160.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjA5NjU2" },
+  { "Nome": "Falena 🧚‍♀️", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image159.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MTk4Njc0" },
+  { "Nome": "Farfalla 🦋", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image158.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjA2ODkw" },
+  { "Nome": "Farfalla 🧚🏻", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image157.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MTk4Njc2" },
+  { "Nome": "Mantide 🌿", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image155.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjA2ODg3" },
+  { "Nome": "Ragno crociato 🕷", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image154.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MTk4Njc1" },
+  { "Nome": "Ragno crociato 🖤", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image153.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MTk4MTIx" },
+  { "Nome": "Vedova nera 🕷", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image152.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjA5NjU3" },
+  { "Nome": "🐸 rana", "Categoria": "Murphy", "URLFoto": "https://sasasared.carrd.co/assets/images/image151.jpg?v=29222105", "URL": "https://t.me/Murhpy_bot?start=Z2V0X2l0ZW09MjA2ODkx" },
+  { "Nome": "🚗Cocò - Rogno Movimento Urbano", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image98.jpg?v=29222105", "URL": "https://t.me/movimentourbano_bot?start=Z2V0X2l0ZW09MjA5Nzcx" },
+  { "Nome": "🚗La Baracca Passo del Tonale Movimento Urbano", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image97.jpg?v=29222105", "URL": "https://t.me/movimentourbano_bot?start=Z2V0X2l0ZW09MjA5Nzcy" },
+  { "Nome": "🚗Porto 23 - Lovere Movimento Urbano", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image96.jpg?v=29222105", "URL": "https://t.me/movimentourbano_bot?start=Z2V0X2l0ZW09MjA5Nzc5" },
+  { "Nome": "🚗Qi Clubbing - Erbusco Movimento Urbano", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image206.jpg?v=29222105", "URL": "https://t.me/movimentourbano_bot?start=Z2V0X2l0ZW09MjA5Nzgw" },
+  { "Nome": "🚗Number One - Cortefranca Movimento Urbano", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image94.jpg?v=29222105", "URL": "https://t.me/movimentourbano_bot?start=Z2V0X2l0ZW09MjA5Nzcz" },
+  { "Nome": "🚗Sesto Senso The Club Movimento Urbano", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image93.jpg?v=29222105", "URL": "https://t.me/movimentourbano_bot?start=Z2V0X2l0ZW09MjA5Nzgy" },
+  { "Nome": "🚗Piazzale Arnaldo - Brescia Movimento Urbano", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image231.jpg?v=eb9f633f", "URL": "https://t.me/movimentourbano_bot?start=Z2V0X2l0ZW09MjA5Nzc0" },
+  { "Nome": "🚗Radio Onda d'Urto - Sant'Efuemia Movimento Urbano", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image91.jpg?v=29222105", "URL": "https://t.me/movimentourbano_bot?start=Z2V0X2l0ZW09MjA5Nzgx" },
+  { "Nome": "🚗Portami al ristorante Movimento Urbano", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGA.jpg", "URL": "https://t.me/movimentourbano_bot?start=Z2V0X2l0ZW09MjA5Nzc2" },
+  { "Nome": "🚗Portami all'università Movimento Urbano", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGj.jpg", "URL": "https://t.me/movimentourbano_bot?start=Z2V0X2l0ZW09MjA5Nzc3" },
+  { "Nome": "🚗Portami in aeroporto Movimento Urbano", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGZ.jpg", "URL": "https://t.me/movimentourbano_bot?start=Z2V0X2l0ZW09MjA5Nzc4" },
+  { "Nome": "🚗Spostamenti Multipli Movimento Urbano", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGL.jpg", "URL": "https://t.me/movimentourbano_bot?start=Z2V0X2l0ZW09MjA5Nzgz" },
+  { "Nome": "🚗Cocò - Rogno Leon Trasp", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image98.jpg?v=29222105", "URL": "https://t.me/leontrasp_bot?start=Z2V0X2l0ZW09MjA4Mzg4" },
+{ "Nome": "🚗La Baracca Passo del Tonale Leon Trasp", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image97.jpg?v=29222105", "URL": "https://t.me/leontrasp_bot?start=Z2V0X2l0ZW09MjA4Mzg2" },
+{ "Nome": "🚗Porto 23 - Lovere Leon Trasp", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image96.jpg?v=29222105", "URL": "https://t.me/leontrasp_bot?start=Z2V0X2l0ZW09MjA4Mzg3" },
+{ "Nome": "🚗Qi Clubbing - Erbusco Leon Trasp", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image206.jpg?v=29222105", "URL": "https://t.me/leontrasp_bot?start=Z2V0X2l0ZW09MjA4Mzg5" },
+{ "Nome": "🚗Number One - Cortefranca Leon Trasp", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image94.jpg?v=29222105", "URL": "https://t.me/leontrasp_bot?start=Z2V0X2l0ZW09MjA4Mzkw" },
+{ "Nome": "🚗Sesto Senso The Club Leon Trasp", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image93.jpg?v=29222105", "URL": "https://t.me/leontrasp_bot?start=Z2V0X2l0ZW09MjA4Mzkx" },
+{ "Nome": "🚗Piazzale Arnaldo - Brescia Leon Trasp", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image231.jpg?v=eb9f633f", "URL": "https://t.me/leontrasp_bot?start=Z2V0X2l0ZW09MjA4Mzky" },
+{ "Nome": "🚗Radio Onda d'Urto - Sant'Efuemia Leon Trasp", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image91.jpg?v=29222105", "URL": "https://t.me/leontrasp_bot?start=Z2V0X2l0ZW09MjA4Mzkz" },
+{ "Nome": "🚗Portami al ristorante Leon Trasp", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGA.jpg", "URL": "https://t.me/leontrasp_bot?start=Z2V0X2l0ZW09MjA4Mzgz" },
+{ "Nome": "🚗Portami all'università Leon Trasp", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGj.jpg", "URL": "https://t.me/leontrasp_bot?start=Z2V0X2l0ZW09MjA4Mzgy" },
+{ "Nome": "🚗Portami in aeroporto Leon Trasp", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGZ.jpg", "URL": "https://t.me/leontrasp_bot?start=Z2V0X2l0ZW09MjA4Mzg0" },
+{ "Nome": "🚗Spostamenti Multipli Leon Trasp", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGL.jpg", "URL": "https://t.me/leontrasp_bot?start=Z2V0X2l0ZW09MjA4Mzg1" },
+
+{ "Nome": "🚗Cocò - Rogno Vegeta Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image98.jpg?v=29222105", "URL": "https://t.me/vegetacarsharing_bot?start=Z2V0X2l0ZW09MjM0NzU2" },
+{ "Nome": "🚗La Baracca Passo del Tonale Vegeta Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image97.jpg?v=29222105", "URL": "https://t.me/vegetacarsharing_bot?start=Z2V0X2l0ZW09MjM0NzU5" },
+{ "Nome": "🚗Porto 23 - Lovere Vegeta Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image96.jpg?v=29222105", "URL": "https://t.me/vegetacarsharing_bot?start=Z2V0X2l0ZW09MjM0NzY4" },
+{ "Nome": "🚗Qi Clubbing - Erbusco Vegeta Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image206.jpg?v=29222105", "URL": "https://t.me/vegetacarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzcw" },
+{ "Nome": "🚗Number One - Cortefranca Vegeta Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image94.jpg?v=29222105", "URL": "https://t.me/vegetacarsharing_bot?start=Z2V0X2l0ZW09MjM0NzYw" },
+{ "Nome": "🚗Sesto Senso The Club Vegeta Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image93.jpg?v=29222105", "URL": "https://t.me/vegetacarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzcy" },
+{ "Nome": "🚗Piazzale Arnaldo - Brescia Vegeta Car Sharing ", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image231.jpg?v=eb9f633f", "URL": "https://t.me/vegetacarsharing_bot?start=Z2V0X2l0ZW09MjM0NzYx" },
+{ "Nome": "🚗Radio Onda d'Urto - Sant'Efuemia Vegeta Car Sharing ", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image91.jpg?v=29222105", "URL": "https://t.me/vegetacarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzcx" },
+{ "Nome": "🚗Portami al ristorante Vegeta Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGA.jpg", "URL": "https://t.me/vegetacarsharing_bot?start=Z2V0X2l0ZW09MjM0NzY0" },
+{ "Nome": "🚗Portami all'università Vegeta Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGj.jpg", "URL": "https://t.me/vegetacarsharing_bot?start=Z2V0X2l0ZW09MjM0NzY1" },
+{ "Nome": "🚗Portami in aeroporto Vegeta Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGZ.jpg", "URL": "https://t.me/vegetacarsharing_bot?start=Z2V0X2l0ZW09MjM0NzY2" },
+{ "Nome": "🚗Spostamenti Multipli Vegeta Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGL.jpg", "URL": "https://t.me/vegetacarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzcz" },
+
+{ "Nome": "🚗Cocò - Rogno Zoro Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image98.jpg?v=29222105", "URL": "https://t.me/zorocarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzc1" },
+{ "Nome": "🚗La Baracca Passo del Tonale Zoro Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image97.jpg?v=29222105", "URL": "https://t.me/zorocarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzc2" },
+{ "Nome": "🚗Porto 23 - Lovere Zoro Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image96.jpg?v=29222105", "URL": "https://t.me/zorocarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzg0" },
+{ "Nome": "🚗Qi Clubbing - Erbusco Zoro Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image206.jpg?v=29222105", "URL": "https://t.me/zorocarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzg1" },
+{ "Nome": "🚗Number One - Cortefranca Zoro Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image94.jpg?v=29222105", "URL": "https://t.me/zorocarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzc3" },
+{ "Nome": "🚗Sesto Senso The Club Zoro Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGn.jpg", "URL": "https://t.me/zorocarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzg3" },
+{ "Nome": "🚗Piazzale Arnaldo - Brescia Zoro Car Sharing ", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image231.jpg?v=eb9f633f", "URL": "https://t.me/zorocarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzc4" },
+{ "Nome": "🚗Radio Onda d'Urto - Sant'Efuemia Zoro Car Sharing ", "Categoria": "Driver4You", "URLFoto": "https://sasasared.carrd.co/assets/images/image91.jpg?v=29222105", "URL": "https://t.me/zorocarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzg2" },
+{ "Nome": "🚗Portami al ristorante Zoro Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGA.jpg", "URL": "https://t.me/zorocarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzgw" },
+{ "Nome": "🚗Portami all'università Zoro Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGj.jpg", "URL": "https://t.me/zorocarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzgx" },
+{ "Nome": "🚗Portami in aeroporto Zoro Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGZ.jpg", "URL": "https://t.me/zorocarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzgy" },
+{ "Nome": "🚗Spostamenti Multipli Zoro Car Sharing", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/PGL.jpg", "URL": "https://t.me/zorocarsharing_bot?start=Z2V0X2l0ZW09MjM0Nzg4" },
+{ "Nome": "Aggiungi le mie Locations al WebNobel", "Categoria": "Driver4You", "URLFoto": "https://envs.sh/Pkz.jpg", "URL": "https://vta.mysellix.io/product/aggiungimi-in-webnobel-66ecb3ac7ba21" },
+
+
+
+
+  { "Nome": "Offerte di Lavoro", "Categoria": "Risparmio e altro", "URLFoto": "https://envs.sh/_EN.jpg", "URL": "https://t.me/jobvallecamonica" },
+  { "Nome": "The Place to be", "Categoria": "Intrattenimento", "URLFoto": "https://envs.sh/PjY.jpg", "URL": "https://t.me/N03lium/1299" },
+  { "Nome": "Life Hacks", "Categoria": "Intrattenimento", "URLFoto": "https://envs.sh/PjC.jpg", "URL": "https://t.me/N03lium/116" },
+  { "Nome": "A.i. Art Gallery", "Categoria": "Intrattenimento", "URLFoto": "https://envs.sh/PjR.jpg", "URL": "https://t.me/N03lium/233" },
+  { "Nome": "Luoghi, città, castelli più belli", "Categoria": "Intrattenimento", "URLFoto": "https://envs.sh/Pj1.jpg", "URL": "https://t.me/N04lium/291" },
+  { "Nome": "A.i. Art Gallery", "Categoria": "Intrattenimento", "URLFoto": "https://envs.sh/Pj4.jpg", "URL": "https://t.me/N04lium/39" },
+  { "Nome": "Come fare? Design", "Categoria": "Intrattenimento", "URLFoto": "https://envs.sh/PjU.jpg", "URL": "https://t.me/N01lium/139" },
+  { "Nome": "A.i. Art Gallery", "Categoria": "Intrattenimento", "URLFoto": "https://envs.sh/Pjl.jpg", "URL": "https://t.me/N01lium/137" },
+  { "Nome": "Programmazioni Live Streaming", "Categoria": "Intrattenimento", "URLFoto": "https://envs.sh/Pjk.jpg", "URL": "https://t.me/N03lium/105" },
+  { "Nome": "Mi hanno Hackerato", "Categoria": "Servizi di Assistenza", "URLFoto": "https://envs.sh/PkQ.jpg", "URL": "https://t.me/nobeliumemergenza_bot" },
+{ "Nome": "Hai perso un oggetto?", "Categoria": "Servizi di Assistenza", "URLFoto": "https://envs.sh/Pkh.jpg", "URL": "https://t.me/nobeliumemergenza_bot" },
+{ "Nome": "Ho smarrito un animale", "Categoria": "Servizi di Assistenza", "URLFoto": "https://envs.sh/Pkd.jpg", "URL": "https://t.me/nobeliumemergenza_bot" },
+{ "Nome": "Segnalazione Anonima", "Categoria": "Servizi di Assistenza", "URLFoto": "https://envs.sh/Pk2.jpg", "URL": "https://t.me/nobeliumemergenza_bot" },
+{ "Nome": "Persona scomparsa", "Categoria": "Servizi di Assistenza", "URLFoto": "https://envs.sh/Pku.jpg", "URL": "https://t.me/nobeliumemergenza_bot" },
+{ "Nome": "Segnalazione Ladri", "Categoria": "Servizi di Assistenza", "URLFoto": "https://envs.sh/Pkt.jpg", "URL": "https://t.me/nobeliumemergenza_bot" },
+{ "Nome": "Bidone della Spazzatura pieno", "Categoria": "Servizi di Assistenza", "URLFoto": "https://envs.sh/Pkw.jpg", "URL": "https://umap.geonue.com/it/map/vallecamonica_2651#11/45.9065/10.2561" },
+{ "Nome": "Segnalazione Buche", "Categoria": "Servizi di Assistenza", "URLFoto": "https://envs.sh/Pkq.jpg", "URL": "https://umap.geonue.com/it/map/vallecamonica_2651#11/45.9065/10.2561" },
+{ "Nome": "Segnalazione Ponti", "Categoria": "Servizi di Assistenza", "URLFoto": "https://envs.sh/PkS.jpg", "URL": "https://umap.geonue.com/it/map/vallecamonica_2651#11/45.9065/10.2561" },
+{ "Nome": "Segnalazione Opera Incompiuta", "Categoria": "Servizi di Assistenza", "URLFoto": "https://envs.sh/PkW.jpg", "URL": "https://umap.geonue.com/it/map/vallecamonica_2651#11/45.9065/10.2561" },
+{ "Nome": "Aggiungimi il mio servizio", "Categoria": "Servizi di Assistenza", "URLFoto": "https://envs.sh/Pkz.jpg", "URL": "https://vta.mysellix.io/product/aggiungimi-in-webnobel-66ecb3ac7ba21" },
+
+{ "Nome": "Movimento Urbano Car Sharing", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/jh9.jpg", "URL": "https://t.me/movimentourbano_bot" },
+{ "Nome": "Leon Transp Car Sharing", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/jh7.jpg", "URL": "https://t.me/leontrasp_bot" },
+{ "Nome": "Driver4You Car Sharing", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/jdU.jpg", "URL": "https://t.me/driver4you_bot" },
+{ "Nome": "Vegeta Car Sharing", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/jzm.jpg", "URL": "https://t.me/vegetacarsharing_bot" },
+{ "Nome": "Zoro Car Sharing", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/jzM.jpg", "URL": "https://t.me/zorocarsharing_bot" },
+{ "Nome": "Gastronomia Sedani", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/PkA.jpg", "URL": "https://t.me/gastronomiasedani_bot" },
+{ "Nome": "Foppoli S.P.A.", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/Pk_.jpg", "URL": "https://t.me/foppolispa_bot" },
+{ "Nome": "Murphy", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/Pkj.jpg", "URL": "https://t.me/Murhpy_bot" },
+{ "Nome": "Honest Cannabis Store", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/PkZ.jpg", "URL": "https://t.me/Honestcannabis_bot" },
+{ "Nome": "Serenity Space", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/PkL.jpg", "URL": "https://t.me/serenityspace_bot" },
+{ "Nome": "Avatar Camuni Store", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/Pk5.jpg", "URL": "https://t.me/acshop_bot" },
+{ "Nome": "Jelly Jungle", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/PkG.jpg", "URL": "https://t.me/Jellyjungle_bot" },
+{ "Nome": "VTA", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/PkK.jpg", "URL": "https://t.me/Vtavta_bot" },
+{ "Nome": "Aggiungi la mia Azienda - Negozio", "Categoria": "Negozi e Aziende", "URLFoto": "https://envs.sh/Pkz.jpg", "URL": "https://vta.mysellix.io/product/aggiungimi-in-webnobel-66ecb3ac7ba21" },
+
+{ "Nome": "Ponte di legno|Temù|Vione|Vezza d'oglio|Incudine|Monno|Edolo|Sonico|Corteno Golgi|Paisco Loveno|Berzo demo|", "Categoria": "Messaggia nel gruppo di", "URLFoto": "https://envs.sh/w9d.jpg", "URL": "https://t.me/N01lium" },
+{ "Nome": "Saviore|Cevo|Cedegolo|Sellero|Capo di ponte|Paspardo|Cimbergo|Ono San Pietro|Cerveno|Ceto|", "Categoria": "Messaggia nel gruppo di", "URLFoto": "https://envs.sh/w9F.jpg", "URL": "https://t.me/N02lium" },
+{ "Nome": "Braone|Losine|Niardo|Breno|Cividate Camuno|Malegno|Borno|Ossimo|Berzo Inferiore|Esine|Bienno|", "Categoria": "Messaggia nel gruppo di", "URLFoto": "https://envs.sh/w9i.jpg", "URL": "https://t.me/N03lium" },
+{ "Nome": "Darfo Boario Terme|Angolo Terme|Costa Volpino|Gianico|Artogne|Pian Camuno|Pisogne|", "Categoria": "Messaggia nel gruppo di", "URLFoto": "https://envs.sh/w9b.jpg", "URL": "https://t.me/N04lium" },
+{ "Nome": "Aggiungi il mio Gruppo/Canale", "Categoria": "Messaggia nel gruppo di", "URLFoto": "https://envs.sh/Pkz.jpg", "URL": "https://vta.mysellix.io/product/aggiungimi-in-webnobel-66ecb3ac7ba21" },
+
+{ "Nome": "Come fare un ordine?", "Categoria": "FAQ", "URLFoto": "https://envs.sh/SdZ.jpg", "URL": "https://telegra.ph/Come-fare-un-ordine-05-26" },
+  { "Nome": "Come prenotare un Driver4You?", "Categoria": "FAQ", "URLFoto": "https://envs.sh/Sd5.jpg", "URL": "https://telegra.ph/Come-prenotare-un-Taxi-05-26" },
+  { "Nome": "Come prenotare una struttura?", "Categoria": "FAQ", "URLFoto": "https://envs.sh/Sd3.jpg", "URL": "https://telegra.ph/Come-prenotare-una-struttura-05-26" },
+  { "Nome": "Telegram Multilingua", "Categoria": "FAQ", "URLFoto": "https://envs.sh/Sd7.jpg", "URL": "https://telegra.ph/Language-Nobeliumfood-bot-05-24" },
+  { "Nome": "Come usare il supporto?", "Categoria": "FAQ", "URLFoto": "https://envs.sh/Sd-.jpg", "URL": "https://telegra.ph/Supporto-mi-hanno-hackerato-ho-perso-un-oggetto-hai-smarrito-un-animale-persona-scomparsa-fai-una-segnalazione-anonima-05-26" },
+  { "Nome": "Marketplace di gruppo, al momento non disponibile", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S2E.jpg", "URL": "https://telegra.ph/Marketplace-Nobelium-10-01" },
+  { "Nome": "Diventa sviluppatore del tuo paese", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S2h.jpg", "URL": "https://telegra.ph/Inline-Bot-Videogame-Diventa-Sviluppatore-del-tuo-paese-05-26" },
+  { "Nome": "Come Effettuare Segnalazioni Urbanistiche (Beta)", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S2d.jpg", "URL": "https://umap.geonue.com/it/map/vallecamonica_2651#11/45.9065/10.2561" },
+  { "Nome": "Scropri di più Industria 4.0", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S22.jpg", "URL": "https://telegra.ph/Altre-funzioni-taxistrutturecolonnine-di-ricarica-farmacierisparmio-carburante-05-26" },
+  { "Nome": "Guida per Negozi e Aziende", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S2u.jpg", "URL": "https://telegra.ph/Guida-al-supporto-attivita-05-26" },
+  { "Nome": "Come Configurare conto PayPal in Negozio?", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S2F.jpg", "URL": "https://telegra.ph/Configurazione-Conto-PayPal-05-19" },
+  { "Nome": "Come configurare Wallet Criptovalute?", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S2t.jpg", "URL": "https://www.youtube.com/watch?v=V2ArPbRHqcE" },
+  { "Nome": "Aggiungi Telegram su Registratore Fiscale", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S2e.jpg", "URL": "https://telegra.ph/Aggiungi-Telegram-su-registratore-fiscale-05-26" },
+  { "Nome": "Negozio Demo Pizzeria", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S2b.jpg", "URL": "https://t.me/DemopizzeriaNobelium_bot" },
+  { "Nome": "Negozio Demo Farmacia", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S2P.jpg", "URL": "https://t.me/DemofarmaciaNobelium_bot" },
+  { "Nome": "Negozio Driver4You", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S2q.jpg", "URL": "https://t.me/driver4you_bot" },
+  { "Nome": "Negozio Demo Affitto Strutture", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S2S.jpg", "URL": "https://t.me/affittostrutture_bot" },
+  { "Nome": "Negozio Demo Noleggio Supercars", "Categoria": "FAQ", "URLFoto": "https://envs.sh/S2W.jpg", "URL": "https://t.me/NoleggiomezziNobelium_bot" },
+  { "Nome": " Diventa Riders Indipendente", "Categoria": "FAQ", "URLFoto": "https://envs.sh/SK8.jpg", "URL": "https://telegra.ph/Diventa-Rider-05-15" },
+    { "Nome": "Guadagna come Admin", "Categoria": "FAQ", "URLFoto": "https://envs.sh/SKJ.jpg", "URL": "https://t.me/nobeliumlab/166" },
+     { "Nome": "🚗Animo", "Categoria": "Viaggio del gusto", "URLFoto": "https://envs.sh/S6C.jpg", "URL": "https://t.me/driver4you_bot?start=Z2V0X2l0ZW09MjM2OTY4" },
+    { "Nome": "🚗Da Sapì", "Categoria": "Viaggio del gusto", "URLFoto": "https://envs.sh/SVY.jpg", "URL": "https://t.me/driver4you_bot?start=Z2V0X2l0ZW09MjM2OTY4" },    
+    { "Nome": "🚗Navertino", "Categoria": "Viaggio del gusto", "URLFoto": "https://envs.sh/SVC.jpg", "URL": "https://t.me/driver4you_bot?start=Z2V0X2l0ZW09MjM2OTY4" },    
+     { "Nome": "🚗Kro", "Categoria": "Viaggio del gusto", "URLFoto": "https://envs.sh/SVR.jpg", "URL": "https://t.me/driver4you_bot?start=Z2V0X2l0ZW09MjM2OTY4" }, 
+     { "Nome": "🚗Osteria al Cantinì", "Categoria": "Viaggio del gusto", "URLFoto": "https://envs.sh/SV1.jpg", "URL": "https://t.me/driver4you_bot?start=Z2V0X2l0ZW09MjM2OTY4" },    
+      { "Nome": "🚗La Vecchia Fontana", "Categoria": "Viaggio del gusto", "URLFoto": "https://envs.sh/I1E.jpg", "URL": "https://t.me/driver4you_bot?start=Z2V0X2l0ZW09MjM2OTY4" }, 
+         { "Nome": "🚗Carmen", "Categoria": "Viaggio del gusto", "URLFoto": "https://envs.sh/I1F.jpg", "URL": "https://t.me/driver4you_bot?start=Z2V0X2l0ZW09MjM2OTY4" },  
+         { "Nome": "Aggiungi il mio Ristorante", "Categoria": "Viaggio del gusto", "URLFoto": "https://envs.sh/Pkz.jpg", "URL": "https://vta.mysellix.io/product/aggiungimi-in-webnobel-66ecb3ac7ba21" },
+
+
+         
+        
+         { "Nome": "🟠 Sito Web Temporaneo https://webnobel.tiiny.site ", "Categoria": "WebNobel Contatti Ufficiali", "URLFoto": "https://envs.sh/_kc.jpg", "URL": "#" },
+         { "Nome": "WebApp WebNobel", "Categoria": "WebNobel Contatti Ufficiali", "URLFoto": "https://envs.sh/_kr.jpg", "URL": "https://t.me/nobeliumemergenza_bot/webnobel" },
+         { "Nome": "Bot Ufficiale @nobeliumemergenza_bot", "Categoria": "WebNobel Contatti Ufficiali", "URLFoto": "https://envs.sh/qsi.jpg", "URL": "#" },
+         { "Nome": "nobeliumlab@protonmail.com ", "Categoria": "WebNobel Contatti Ufficiali", "URLFoto": "https://envs.sh/_k5.jpg", "URL": "#" },
+         { "Nome": "https://t.me/nobeliumlab", "Categoria": "WebNobel Contatti Ufficiali", "URLFoto": "https://envs.sh/_kY.jpg", "URL": "#" },
+         { "Nome": "🟠 WhatsApp Canale Ufficiale", "Categoria": "WebNobel Contatti Ufficiali", "URLFoto": "https://envs.sh/Uys.jpg", "URL": "https://whatsapp.com/channel/0029Vax4zGoLtOjHb5r8Kg14" },
+        
+         { "Nome": "Instagram WebNobel", "Categoria": "WebNobel Contatti Ufficiali", "URLFoto": "https://envs.sh/_k8.jpg", "URL": "https://www.instagram.com/webnobel_app?igsh=ZTg1YnZmY2c2bnQz" },
+         { "Nome": "Instagram Driver4You", "Categoria": "WebNobel Contatti Ufficiali", "URLFoto": "https://envs.sh/_ko.jpg", "URL": "https://www.instagram.com/webnobel_app?igsh=ZTg1YnZmY2c2bnQz" },
+         { "Nome": "Aggiungimi", "Categoria": "WebNobel Contatti Ufficiali", "URLFoto": "https://envs.sh/Pkz.jpg", "URL": "https://vta.mysellix.io/product/aggiungimi-in-webnobel-66ecb3ac7ba21" },
+         { "Nome": "ID 1000 Movimento Urbano ", "Categoria": "ID Card Check", "URLFoto": "https://envs.sh/jkJ.jpg", "URL": "https://envs.sh/jkJ.jpg" },
+         { "Nome": "ID 1001 Leon Trasp ", "Categoria": "ID Card Check", "URLFoto": "https://envs.sh/jkr.jpg", "URL": "https://envs.sh/jkr.jpg" },
+         { "Nome": "ID 1002 Driver4You ", "Categoria": "ID Card Check", "URLFoto": "https://envs.sh/jks.jpg", "URL": "https://envs.sh/jks.jpg" },
+         { "Nome": "ID 1003 Vegeta ", "Categoria": "ID Card Check", "URLFoto": "https://envs.sh/jkH.jpg", "URL": "https://envs.sh/jkH.jpg" },
+         { "Nome": "ID 1004 Zoro ", "Categoria": "ID Card Check", "URLFoto": "https://envs.sh/jkg.jpg", "URL": "https://envs.sh/jkg.jpg" },
+         { "Nome": "Nuove ID Card Autorizzate dal sistema WebNobel nelle prossime ore / giorni ", "Categoria": "ID Card Check", "URLFoto": "https://envs.sh/_EG.jpg", "URL": "https://t.me/nobeliumlab/87" },              
+
+         { "Nome": "Dona per potenziare il WebNobel", "Categoria": "Investitori", "URLFoto": "https://envs.sh/jJU.jpg", "URL": "#" },
+         { "Nome": "Dona per potenziare il servizio Driver4You", "Categoria": "Investitori", "URLFoto": "https://envs.sh/_ko.jpg", "URL": "#" },
+         { "Nome": "Dona per potenziare il servizio Viaggio del gusto", "Categoria": "Investitori", "URLFoto": "https://envs.sh/jJR.jpg", "URL": "https://t.me/nobeliumlab/87" },              
+         { "Nome": "Aiutami a potenziare il Sistema ID Card Check", "Categoria": "Investitori", "URLFoto": "https://envs.sh/_EG.jpg", "URL": "https://t.me/nobeliumlab/87" },              
+         { "Nome": "Dona per potenziare il servizio Hai perso un oggetto?", "Categoria": "Investitori", "URLFoto": "https://envs.sh/Pkh.jpg", "URL": "#" },
+         { "Nome": "Dona per potenziare il servizio Ho smarrito un animale", "Categoria": "Investitori", "URLFoto": "https://envs.sh/Pkd.jpg", "URL": "#" },
+         { "Nome": "Dona per potenziare il Servizio di Segnalazione Anonima", "Categoria": "Investitori", "URLFoto": "https://envs.sh/Pk2.jpg", "URL": "#" },
+         { "Nome": "Dona per Potenziare il servizio di Persona scomparsa", "Categoria": "Investitori", "URLFoto": "https://envs.sh/Pku.jpg", "URL": "#" },
+         { "Nome": "Dona per Potenziare il servizio di Segnalazione Ladri", "Categoria": "Investitori", "URLFoto": "https://envs.sh/Pkt.jpg", "URL": "#" },
+         { "Nome": "Dona per potenziare il servizio di Bidone della Spazzatura pieno", "Categoria": "Investitori", "URLFoto": "https://envs.sh/Pkw.jpg", "URL": "#" },
+         { "Nome": "Dona per potenziare il servizio di Segnalazione Buche", "Categoria": "Investitori", "URLFoto": "https://envs.sh/Pkq.jpg", "URL": "#" },
+         { "Nome": "Dona per potenziare il servizio di Segnalazione Ponti", "Categoria": "Investitori", "URLFoto": "https://envs.sh/PkS.jpg", "URL": "#" },
+         { "Nome": "Dona per potenziare il Servizio Segnalazione Opera Incompiuta", "Categoria": "Investitori", "URLFoto": "https://envs.sh/PkW.jpg", "URL": "#" },
+         { "Nome": "Dona per Sviluppare il Balance System funzionante con NFC Card", "Categoria": "Investitori", "URLFoto": "https://envs.sh/jJk.jpg", "URL": "#" },
+         { "Nome": "Dona per potenziare il Card Creator Tool", "Categoria": "Investitori", "URLFoto": "https://envs.sh/jJ8.jpg", "URL": "#" },
+         { "Nome": "Dona per realizzare le Carte NFC personalizzate degli Avatar Camuni", "Categoria": "Investitori", "URLFoto": "https://envs.sh/jJ7.jpg", "URL": "#" },
+         { "Nome": "Dona 100€ per ogni servizio del WebNobel", "Categoria": "Investitori", "URLFoto": "https://envs.sh/jJJ.jpg", "URL": "#" },
+         { "Nome": "Pagami un caffè come incoraggiamento", "Categoria": "Investitori", "URLFoto": "https://envs.sh/T70.jpg", "URL": "#" },
+         { "Nome": "Pagami 20€ di caffè al mese come incoraggiamento", "Categoria": "Investitori", "URLFoto": "https://envs.sh/T7S.jpg", "URL": "#" },
+
+
+            // Aggiungi qui altri elementi seguendo lo stesso formato
+        ];
+
+        const categories = [...new Set(jsonData.map(item => item.Categoria))].sort();
+        let activeCategories = [...categories];
+        let currentColumns = 2;
+
+        const mainCategoriesContainer = document.getElementById('mainCategories');
+        const filterButtonsContainer = document.getElementById('filterButtons');
+        const cardGrid = document.getElementById('cardGrid');
+        const searchInput = document.getElementById('searchInput');
+        const homeCounter = document.getElementById('homeCounter');
+        const filterCounter = document.getElementById('filterCounter');
+
+        function countItemsInCategory(category) {
+            return jsonData.filter(item => item.Categoria === category).length;
+        }
+
+        function createButton(category, container) {
+            const button = document.createElement('button');
+            const count = countItemsInCategory(category);
+            button.innerHTML = `${category} <span class="category-count">(${count})</span>`;
+            button.dataset.category = category;
+            button.classList.toggle('active', activeCategories.includes(category));
+            button.addEventListener('click', () => toggleCategory(category));
+            return button;
+        }
+
+   function toggleCategory(category) {
+    const index = activeCategories.indexOf(category);
+    if (index > -1) {
+        activeCategories.splice(index, 1);
+    } else {
+        activeCategories.push(category);
+    }
+    updateButtonStates();
+    updateDisplay();
+    updateCounters();
+}
+
+        function updateButtonStates() {
+    const allButtons = document.querySelectorAll('[data-category]');
+    allButtons.forEach(btn => {
+        const category = btn.dataset.category;
+        btn.classList.toggle('active', activeCategories.includes(category));
+    });
+}
+
+       function updateMainCategories() {
+    mainCategoriesContainer.innerHTML = '';
+    const allButton = document.createElement('button');
+    allButton.textContent = 'All';
+    allButton.classList.toggle('active', activeCategories.length === categories.length);
+    allButton.addEventListener('click', toggleAllCategories);
+    mainCategoriesContainer.appendChild(allButton);
+    categories.forEach(category => {
+        mainCategoriesContainer.appendChild(createButton(category, mainCategoriesContainer));
+    });
+}
+
+ // Modifica la funzione updateDisplay per mantenere il layout lista
+function updateDisplay() {
+    const searchTerm = searchInput.value.toLowerCase();
+    cardGrid.innerHTML = '';
+    cardGrid.className = 'list';
+    
+    jsonData.forEach(item => {
+        if ((activeCategories.length === 0 || activeCategories.includes(item.Categoria)) &&
+            item.Nome.toLowerCase().includes(searchTerm) &&
+            (!showingLikedOnly || likedItems.includes(item.Nome))) {
+            cardGrid.appendChild(createCard(item));
+        }
+    });
+}
+
+function updateCounters() {
+    const totalCategories = categories.length;
+    const activeProductsServices = jsonData.filter(item => 
+        (activeCategories.length === 0 || activeCategories.includes(item.Categoria)) &&
+        (!showingLikedOnly || likedItems.includes(item.Nome))
+    ).length;
+    const likedItemsCount = likedItems.length;
+    const counterText = `
+        <div>Categorie: <span>${activeCategories.length}/${totalCategories}</span></div>
+        <div>Prodotti/Servizi: <span>${activeProductsServices}/${jsonData.length}</span></div>
+        <div>❤️ Preferiti: <span>${likedItemsCount}</span></div>
+    `;
+    homeCounter.innerHTML = counterText;
+    filterCounter.innerHTML = counterText;
+}
+
+       function createCard(item) {
+    const card = document.createElement('div');
+    card.className = isListLayout ? 'list-item' : 'card';
+    const isLiked = likedItems.includes(item.Nome);
+    
+    if (isListLayout) {
+        card.innerHTML = `
+            <div class="list-item-content">
+                <img src="${item.URLFoto}" alt="${item.Nome}">
+                <div class="list-item-info">
+                    <h3>${item.Nome}</h3>
+                    <p>${item.Categoria}</p>
+                </div>
+                <button class="heart-button ${isLiked ? 'active' : ''}" onclick="toggleLike(event, '${item.Nome}')">
+                    ${isLiked ? '❤️' : '🤍'}
+                </button>
+                <a href="${item.URL}" target="_blank" class="open-button">OPEN</a>
+            </div>
+        `;
+    } else {
+        card.innerHTML = `
+            <a href="${item.URL}" target="_blank">
+                <img src="${item.URLFoto}" alt="${item.Nome}">
+                <h3>${item.Nome}</h3>
+            </a>
+            <div class="heart-container">
+                <button class="heart-button ${isLiked ? 'active' : ''}" onclick="toggleLike(event, '${item.Nome}')">
+                    ${isLiked ? '❤️' : '🤍'}
+                </button>
+            </div>
+        `;
+    }
+    
+    return card;
+}
+
+        function openFilters() {
+            document.getElementById('filtersOverlay').style.display = 'block';
+            updateFilterButtons();
+        }
+
+        function closeFilters() {
+            document.getElementById('filtersOverlay').style.display = 'none';
+        }
+
+        function updateFilterButtons() {
+            filterButtonsContainer.innerHTML = '';
+            categories.forEach(category => {
+                filterButtonsContainer.appendChild(createButton(category));
+            });
+        }
+
+        function openLayout() {
+            document.getElementById('layoutOverlay').style.display = 'block';
+        }
+
+        function closeLayout() {
+            document.getElementById('layoutOverlay').style.display = 'none';
+        }
+
+        function toggleTheme() {
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+    body.classList.toggle('dark-theme');
+    themeToggle.textContent = body.classList.contains('dark-theme') ? '☀️' : '🌙';
+    updateButtonStates(); // Aggiungi questa riga
+}
+       function toggleAllCategories() {
+    if (activeCategories.length === categories.length) {
+        activeCategories = [];
+    } else {
+        activeCategories = [...categories];
+    }
+    updateButtonStates();
+    updateDisplay();
+    updateCounters();
+}
+
+        document.querySelectorAll('.column-option').forEach(button => {
+    button.addEventListener('click', () => {
+        currentColumns = parseInt(button.dataset.columns);
+        document.querySelectorAll('.column-option').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        if (currentColumns === 1) {
+            cardGrid.style.display = 'flex';
+            cardGrid.style.flexDirection = 'column';
+        } else {
+            cardGrid.style.display = 'grid';
+            cardGrid.style.gridTemplateColumns = `repeat(${currentColumns}, 1fr)`;
+        }
+        closeLayout();
+    });
+});
+
+        searchInput.addEventListener('input', updateDisplay);
+
+        updateMainCategories();
+        updateFilterButtons();
+        updateDisplay();
+        updateCounters();
+        cardGrid.style.gridTemplateColumns = `repeat(${currentColumns}, 1fr)`;
+        // Variabili globali
+let adminTimerStart;
+let adminCountdown;
+let isAdminMode = false;
+
+// Funzione per creare la barra di caricamento circolare
+function createLoadingBar() {
+    const settingsButton = document.getElementById('settingsButton');
+    const loadingBar = document.createElement('div');
+    loadingBar.className = 'circular-loading';
+    settingsButton.appendChild(loadingBar);
+}
+
+// Funzione per aggiornare la barra di caricamento
+function updateLoadingBar(progress) {
+    const loadingBar = document.querySelector('.circular-loading');
+    loadingBar.style.background = `conic-gradient(
+        ${document.body.classList.contains('dark-theme') ? '#00a86b' : '#007bff'} ${progress}%, 
+        transparent ${progress}%
+    )`;
+}
+
+// Funzione per gestire il conto alla rovescia
+function startAdminCountdown() {
+    let countdown = 10;
+    const settingsButton = document.getElementById('settingsButton');
+    
+    adminCountdown = setInterval(() => {
+        countdown--;
+        settingsButton.textContent = countdown;
+        
+        if (countdown === 0) {
+            clearInterval(adminCountdown);
+            settingsButton.textContent = '⚙️';
+            createAdminButton();
+        }
+    }, 1000);
+}
+
+// Funzione per creare il pulsante Admin
+function createAdminButton() {
+    const adminButton = document.createElement('button');
+    adminButton.textContent = 'Admin';
+    adminButton.id = 'adminButton';
+    adminButton.style.position = 'absolute';
+    adminButton.style.top = '10px';
+    adminButton.style.left = '10px';
+    document.body.appendChild(adminButton);
+    
+    adminButton.addEventListener('click', toggleAdminMode);
+}
+
+// Funzione per attivare/disattivare la modalità Admin
+function toggleAdminMode() {
+    isAdminMode = !isAdminMode;
+    if (isAdminMode) {
+        enableAdminInterface();
+    } else {
+        disableAdminInterface();
+    }
+}
+
+// Funzione per abilitare l'interfaccia Admin
+function enableAdminInterface() {
+    // Crea l'interfaccia di editing
+    const adminInterface = document.createElement('div');
+    adminInterface.id = 'adminInterface';
+    adminInterface.style.position = 'fixed';
+    adminInterface.style.top = '50px';
+    adminInterface.style.left = '10px';
+    adminInterface.style.backgroundColor = document.body.classList.contains('dark-theme') ? '#2a2a2a' : '#f0f0f0';
+    adminInterface.style.padding = '10px';
+    adminInterface.style.borderRadius = '5px';
+    
+    // Aggiungi pulsanti per importare/esportare
+    const importButton = document.createElement('button');
+    importButton.textContent = 'Importa Template';
+    importButton.onclick = importTemplate;
+    
+    const exportButton = document.createElement('button');
+    exportButton.textContent = 'Esporta Template';
+    exportButton.onclick = exportTemplate;
+    
+    adminInterface.appendChild(importButton);
+    adminInterface.appendChild(exportButton);
+    
+    document.body.appendChild(adminInterface);
+    
+    // Abilita l'editing degli elementi
+    enableEditing();
+}
+
+// Funzione per disabilitare l'interfaccia Admin
+function disableAdminInterface() {
+    const adminInterface = document.getElementById('adminInterface');
+    if (adminInterface) {
+        adminInterface.remove();
+    }
+    disableEditing();
+}
+
+// Funzione per abilitare l'editing degli elementi
+function enableEditing() {
+    document.querySelectorAll('h1, h2, h3, p, img, a').forEach(element => {
+        element.contentEditable = true;
+        element.draggable = true;
+        element.addEventListener('click', editElement);
+    });
+}
+
+// Funzione per disabilitare l'editing degli elementi
+function disableEditing() {
+    document.querySelectorAll('h1, h2, h3, p, img, a').forEach(element => {
+        element.contentEditable = false;
+        element.draggable = false;
+        element.removeEventListener('click', editElement);
+    });
+}
+
+// Funzione per editare un elemento
+function editElement(event) {
+    const element = event.target;
+    // Implementa qui la logica per l'editing dell'elemento
+    console.log('Editing element:', element);
+}
+
+// Funzione per importare un template
+function importTemplate() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.html';
+    input.onchange = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            document.body.innerHTML = e.target.result;
+            enableAdminInterface();
+        };
+        reader.readAsText(file);
+    };
+    input.click();
+}
+
+// Funzione per esportare il template
+function exportTemplate() {
+    const htmlContent = document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], {type: 'text/html'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'template.html';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+// Event listener per il pulsante Impostazioni
+document.getElementById('settingsButton').addEventListener('mousedown', () => {
+    adminTimerStart = Date.now();
+});
+
+document.getElementById('settingsButton').addEventListener('mouseup', () => {
+    if (Date.now() - adminTimerStart >= 3000) {
+        startAdminCountdown();
+    }
+});
+
+// Salva le modifiche nel LocalStorage
+function saveChanges() {
+    localStorage.setItem('templateContent', document.body.innerHTML);
+}
+
+// Carica le modifiche dal LocalStorage
+function loadChanges() {
+    const savedContent = localStorage.getItem('templateContent');
+    if (savedContent) {
+        document.body.innerHTML = savedContent;
+    }
+}
+
+// Chiama loadChanges all'avvio per caricare eventuali modifiche salvate
+loadChanges();
+let isCyberpunkTheme = false;
+
+function toggleCyberpunkTheme() {
+    isCyberpunkTheme = !isCyberpunkTheme;
+    document.body.classList.toggle('cyberpunk-theme', isCyberpunkTheme);
+    if (isCyberpunkTheme) {
+        document.body.classList.add('dark-theme');
+        document.body.classList.remove('hacker-theme');
+        isHackerTheme = false;
+    }
+    updateSettingsState();
+    updateDisplay();
+}
+let isVintageTheme = false;
+
+function toggleVintageTheme() {
+    isVintageTheme = !isVintageTheme;
+    document.body.classList.toggle('vintage-theme', isVintageTheme);
+    if (isVintageTheme) {
+        document.body.classList.remove('dark-theme');
+        document.body.classList.remove('cyberpunk-theme');
+        document.body.classList.remove('hacker-theme');
+        document.body.classList.remove('instagram-theme');
+        isCyberpunkTheme = false;
+        isHackerTheme = false;
+        isInstagramTheme = false;
+    }
+    updateSettingsState();
+    updateDisplay();
+}
+
+function updateSettingsState() {
+    document.getElementById('themeToggle').checked = document.body.classList.contains('dark-theme');
+    document.getElementById('cyberpunkToggle').checked = document.body.classList.contains('cyberpunk-theme');
+    document.getElementById('layoutToggle').checked = isListLayout;
+    document.getElementById('likedToggle').checked = showingLikedOnly;
+    document.getElementById('columnSlider').value = currentColumns;
+    document.getElementById('columnValue').textContent = currentColumns;
+}
+
+function toggleTheme() {
+    document.body.classList.toggle('dark-theme');
+    if (document.body.classList.contains('cyberpunk-theme')) {
+        document.body.classList.remove('cyberpunk-theme');
+        isCyberpunkTheme = false;
+    }
+    updateSettingsState();
+    updateDisplay();
+}
+
+function init() {
+    updateMainCategories();
+    updateFilterButtons();
+    isListLayout = true;  // Imposta il layout lista come default
+    currentColumns = 1;  // Imposta il valore delle colonne a 1
+    updateDisplay();
+    updateCounters();
+    updateSettingsState();
+    
+    // Aggiungi gli event listener per i temi
+    document.getElementById('cyberpunkToggle').addEventListener('change', toggleCyberpunkTheme);
+    document.getElementById('hackerToggle').addEventListener('change', toggleHackerTheme);
+    document.getElementById('vintageToggle').addEventListener('change', toggleVintageTheme);
+    document.getElementById('instagramToggle').addEventListener('change', toggleInstagramTheme);
+}
+
+// Chiamata alla funzione init all'avvio
+window.addEventListener('load', init);
+
+let isHackerTheme = false;
+
+function toggleHackerTheme() {
+    isHackerTheme = !isHackerTheme;
+    document.body.classList.toggle('hacker-theme', isHackerTheme);
+    if (isHackerTheme) {
+        document.body.classList.add('dark-theme');
+        document.body.classList.remove('cyberpunk-theme');
+        isCyberpunkTheme = false;
+    }
+    updateSettingsState();
+    updateDisplay();
+}
+
+function updateSettingsState() {
+    document.getElementById('themeToggle').checked = document.body.classList.contains('dark-theme');
+    document.getElementById('cyberpunkToggle').checked = document.body.classList.contains('cyberpunk-theme');
+    document.getElementById('hackerToggle').checked = document.body.classList.contains('hacker-theme');
+    document.getElementById('vintageToggle').checked = document.body.classList.contains('vintage-theme');
+    document.getElementById('instagramToggle').checked = document.body.classList.contains('instagram-theme');
+    document.getElementById('layoutToggle').checked = isListLayout;
+    document.getElementById('likedToggle').checked = showingLikedOnly;
+    document.getElementById('columnSlider').value = currentColumns;
+    document.getElementById('columnValue').textContent = currentColumns;
+}
+
+function toggleTheme() {
+    document.body.classList.toggle('dark-theme');
+    if (document.body.classList.contains('cyberpunk-theme') || document.body.classList.contains('hacker-theme')) {
+        document.body.classList.remove('cyberpunk-theme');
+        document.body.classList.remove('hacker-theme');
+        isCyberpunkTheme = false;
+        isHackerTheme = false;
+    }
+    updateSettingsState();
+    updateDisplay();
+}
+
+function toggleCyberpunkTheme() {
+    isCyberpunkTheme = !isCyberpunkTheme;
+    document.body.classList.toggle('cyberpunk-theme', isCyberpunkTheme);
+    if (isCyberpunkTheme) {
+        document.body.classList.add('dark-theme');
+        document.body.classList.remove('hacker-theme');
+        isHackerTheme = false;
+    }
+    updateSettingsState();
+    updateDisplay();
+}
+let isInstagramTheme = false;
+
+function toggleInstagramTheme() {
+    isInstagramTheme = !isInstagramTheme;
+    document.body.classList.toggle('instagram-theme', isInstagramTheme);
+    if (isInstagramTheme) {
+        document.body.classList.remove('dark-theme');
+        document.body.classList.remove('cyberpunk-theme');
+        document.body.classList.remove('hacker-theme');
+        document.body.classList.remove('vintage-theme');
+        isCyberpunkTheme = false;
+        isHackerTheme = false;
+        isVintageTheme = false;
+    }
+    updateSettingsState();
+    updateDisplay();
+}
+
+function init() {
+    updateMainCategories();
+    updateFilterButtons();
+    isListLayout = true;  // Imposta il layout lista come default
+    currentColumns = 1;  // Imposta il valore delle colonne a 1
+    updateDisplay();
+    updateCounters();
+    updateSettingsState();
+    
+    // Aggiungi gli event listener per i temi
+    document.getElementById('cyberpunkToggle').addEventListener('change', toggleCyberpunkTheme);
+    document.getElementById('hackerToggle').addEventListener('change', toggleHackerTheme);
+    document.getElementById('vintageToggle').addEventListener('change', toggleVintageTheme);
+    document.getElementById('instagramToggle').addEventListener('change', toggleInstagramTheme);
+}
+
+// Chiamata alla funzione init all'avvio
+window.addEventListener('load', init);
+
+const aiChatButton = document.getElementById('aiChatButton');
+const aiChatOverlay = document.getElementById('aiChatOverlay');
+const closeAiChat = document.getElementById('closeAiChat');
+const aiChatMessages = document.getElementById('aiChatMessages');
+const passwordPrompt = document.getElementById('passwordPrompt');
+const chatPassword = document.getElementById('chatPassword');
+const submitPassword = document.getElementById('submitPassword');
+const buyAccess = document.getElementById('buyAccess');
+const showExamples = document.getElementById('showExamples');
+const requestPreview = document.getElementById('requestPreview');
+
+aiChatButton.addEventListener('click', () => {
+  aiChatOverlay.style.display = 'block';
+  passwordPrompt.style.display = 'flex';
+  aiChatMessages.style.display = 'none';
+});
+
+closeAiChat.addEventListener('click', () => {
+  aiChatOverlay.style.display = 'none';
+  passwordPrompt.style.display = 'flex';
+  aiChatMessages.style.display = 'none';
+  chatPassword.value = '';
+});
+
+submitPassword.addEventListener('click', checkPassword);
+chatPassword.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    checkPassword();
+  }
+});
+
+let isAuthenticated = false;
+function checkPassword() {
+  const password = chatPassword.value;
+  if (password === '1234figa') {
+    isAuthenticated = true;
+    // Nascondi il login slider e il prompt password
+    document.getElementById('loginSlider').style.display = 'none';
+    passwordPrompt.style.display = 'none';
+    
+    // Mostra i messaggi della chat e il pulsante delle funzionalità
+    aiChatMessages.style.display = 'block';
+    document.getElementById('featuresButton').style.display = 'block';
+    
+    // Mostra l'iframe per la chat AI
+    document.getElementById('aiChatFrame').style.display = 'block';
+    document.getElementById('aiChatFrame').src = 'https://aiwebnobel.carrd.co/';
+  } else {
+    alert('Password errata. Riprova.');
+    chatPassword.value = '';
+  }
+}
+
+// Gestione del pulsante delle funzionalità
+const featuresButton = document.getElementById('featuresButton');
+const featuresSlider = document.getElementById('featuresSlider');
+let isSliderVisible = false;
+
+featuresButton.addEventListener('click', () => {
+  isSliderVisible = !isSliderVisible;
+  featuresSlider.style.display = isSliderVisible ? 'block' : 'none';
+});
+
+// Gestione della chiusura della chat
+document.getElementById('closeAiChat').addEventListener('click', () => {
+  document.getElementById('aiChatOverlay').style.display = 'none';
+  // Non resettare isAuthenticated qui
+});
+
+// Gestione dell'apertura della chat
+document.getElementById('aiChatButton').addEventListener('click', () => {
+  const aiChatOverlay = document.getElementById('aiChatOverlay');
+  aiChatOverlay.style.display = 'block';
+  
+  if (isAuthenticated) {
+    // Se l'utente è già autenticato, mostra direttamente l'interfaccia della chat
+    document.getElementById('loginSlider').style.display = 'none';
+    document.getElementById('passwordPrompt').style.display = 'none';
+    document.getElementById('aiChatMessages').style.display = 'block';
+    document.getElementById('featuresButton').style.display = 'block';
+    document.getElementById('aiChatFrame').style.display = 'block';
+  } else {
+    // Altrimenti, mostra lo slider di login e il prompt per la password
+    document.getElementById('loginSlider').style.display = 'block';
+    document.getElementById('passwordPrompt').style.display = 'flex';
+    document.getElementById('aiChatMessages').style.display = 'none';
+  }
+});
+
+// Abilita lo scroll orizzontale con il mouse (codice invariato)
+document.querySelectorAll('.image-slider').forEach(slider => {
+  // ... (il codice per lo scroll orizzontale rimane lo stesso)
+});
+
+let isKioskMode = false;
+const nonPaymentItems = ['Free Service 1', 'Free Product 2', 'Redirect Item 3'];
+
+function toggleKioskMode() {
+  isKioskMode = !isKioskMode;
+  const kioskModeButton = document.getElementById('kioskModeButton');
+  kioskModeButton.classList.toggle('active', isKioskMode);
+  updateDisplay();
+}
+
+function updateDisplay() {
+  const cardGrid = document.getElementById('cardGrid');
+  cardGrid.innerHTML = '';
+  jsonData.forEach(item => {
+    const card = createCard(item);
+    cardGrid.appendChild(card);
+  });
+}
+
+function createCard(item) {
+  const card = document.createElement('div');
+  card.className = isListLayout ? 'list-item' : 'card';
+  const isLiked = likedItems.includes(item.Nome);
+  
+  if (isListLayout) {
+    card.innerHTML = `
+      <div class="list-item-content">
+        <img src="${item.URLFoto}" alt="${item.Nome}">
+        <div class="list-item-info">
+          <h3>${item.Nome}</h3>
+          <p>${item.Categoria}</p>
+        </div>
+        <button class="heart-button ${isLiked ? 'active' : ''}" onclick="toggleLike(event, '${item.Nome}')">
+          ${isLiked ? '❤️' : '🤍'}
+        </button>
+        <button class="open-button" onclick="handleItemClick('${item.URL}', '${item.Nome}')">
+          ${isKioskMode ? 'Scan 🧾' : 'OPEN'}
+        </button>
+      </div>
+    `;
+  } else {
+    card.innerHTML = `
+      <a href="${item.URL}" onclick="handleItemClick('${item.URL}', '${item.Nome}'); return false;">
+        <img src="${item.URLFoto}" alt="${item.Nome}">
+        <h3>${item.Nome}</h3>
+      </a>
+      <div class="heart-container">
+        <button class="heart-button ${isLiked ? 'active' : ''}" onclick="toggleLike(event, '${item.Nome}')">
+          ${isLiked ? '❤️' : '🤍'}
+        </button>
+      </div>
+    `;
+  }
+  
+  return card;
+}
+
+function handleItemClick(url, itemName) {
+  if (isKioskMode) {
+    openScanWindow(url, itemName);
+  } else {
+    window.open(url, '_blank');
+  }
+}
+
+function openScanWindow(url, itemName) {
+  const overlay = document.createElement('div');
+  overlay.className = 'scan-overlay';
+  
+  const content = document.createElement('div');
+  content.className = 'scan-content';
+  
+  const title = document.createElement('h2');
+  title.textContent = nonPaymentItems.includes(itemName) ? 'Scan per reindirizzamento' : 'In Attesa del tuo pagamento';
+  
+  const qrCode = document.createElement('div');
+  qrCode.id = 'qrCode';
+  
+  const closeButton = document.createElement('button');
+  closeButton.textContent = '×';
+  closeButton.className = 'close-button';
+  closeButton.onclick = () => document.body.removeChild(overlay);
+  
+  content.appendChild(closeButton);
+  content.appendChild(title);
+  content.appendChild(qrCode);
+  
+  if (!nonPaymentItems.includes(itemName)) {
+    const paymentMethods = ['PayPal', 'Revolut', 'BTC', 'BCH', 'XMR'];
+    const paymentButtons = document.createElement('div');
+    paymentButtons.className = 'payment-buttons';
+    
+    paymentMethods.forEach(method => {
+      const button = document.createElement('button');
+      button.textContent = method;
+      button.onclick = () => updateQRCode(method, url);
+      paymentButtons.appendChild(button);
+    });
+    
+    const loadingSpinner = document.createElement('div');
+    loadingSpinner.className = 'loading-spinner';
+    
+    content.appendChild(paymentButtons);
+    content.appendChild(loadingSpinner);
+  }
+  
+  overlay.appendChild(content);
+  document.body.appendChild(overlay);
+  
+  updateQRCode(nonPaymentItems.includes(itemName) ? 'Redirect' : 'PayPal', url);
+}
+
+function updateQRCode(method, url) {
+  const qrCode = document.getElementById('qrCode');
+  qrCode.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(method + ':' + url)}" alt="QR Code for ${method}">`;
+}
+
+// Aggiungi questo event listener dopo aver definito la funzione toggleKioskMode
+document.getElementById('kioskModeButton').addEventListener('click', toggleKioskMode);
+
+// Assicurati di chiamare updateDisplay() all'avvio dell'applicazione
+updateDisplay();
+    </script>
+</body>
+</html>
